@@ -1,24 +1,56 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
-#include "ResourceManager.h"
-#include "Renderer.h"
+#include "Transform.h"
 
-dae::GameObject::~GameObject() = default;
+dae::GameObject::GameObject()
+	: m_pComponents{}
+	, m_pTransform{ nullptr }
+	, m_IsDead{ false }
+{
+	m_pTransform = AddComponent<Transform>();
+}
 
-void dae::GameObject::Update(){}
+dae::GameObject::~GameObject()
+{
+	for (Component* pComponent : m_pComponents)
+	{
+		delete pComponent;
+	}
+}
+
+void dae::GameObject::Update()
+{
+	for (Component* pComponent : m_pComponents)
+	{
+		pComponent->Update();
+	}
+}
+
+void dae::GameObject::FixedUpdate()
+{
+	for (Component* pComponent : m_pComponents)
+	{
+		pComponent->FixedUpdate();
+	}
+}
+
+void dae::GameObject::LateUpdate()
+{
+	for (Component* pComponent : m_pComponents)
+	{
+		pComponent->LateUpdate();
+	}
+}
 
 void dae::GameObject::Render() const
 {
-	const auto pos = m_Transform.GetPosition();
-	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+	for (Component* pComponent : m_pComponents)
+	{
+		pComponent->Render();
+	}
 }
 
-void dae::GameObject::SetTexture(const std::string& filename)
+dae::Transform* dae::GameObject::GetTransform() const
 {
-	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
-}
-
-void dae::GameObject::SetPosition(float x, float y)
-{
-	m_Transform.SetPosition(x, y, 0.0f);
+	return m_pTransform;
 }
