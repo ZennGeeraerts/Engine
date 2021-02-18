@@ -9,8 +9,11 @@ namespace dae
 	public:
 		FPSCounter(GameObject* pGameObject);
 		void Update() override;
+		void SetUpdateRate(float updateRate);
 	private:
 		Text* m_pText;
+		float m_UpdateRate;
+		float m_ElapsedSec;
 	};
 }
 
