@@ -6,13 +6,13 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include <SDL.h>
-#include "Text.h"
+#include "C_Text.h"
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
-#include "TextureRenderer.h"
-#include "Transform.h"
-#include "FPSCounter.h"
+#include "C_Renderer.h"
+#include "C_Transform.h"
+#include "C_FPSCounter.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -48,32 +48,32 @@ void dae::Minigin::LoadGame() const
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
 	auto go = std::make_shared<GameObject>();
-	auto textureRenderer = go->AddComponent<TextureRenderer>();
-	textureRenderer->SetTexture("background.jpg");
+	auto renderer = go->AddComponent<C_Renderer>();
+	renderer->SetTexture("background.jpg");
 	scene.Add(go);
 
 	go = std::make_shared<GameObject>();
-	textureRenderer = go->AddComponent<TextureRenderer>();
-	textureRenderer->SetTexture("logo.png");
-	go->GetComponent<Transform>()->SetPosition(216, 180, 0);
+	renderer = go->AddComponent<C_Renderer>();
+	renderer->SetTexture("logo.png");
+	go->GetComponent<C_Transform>()->SetPosition(216, 180, 0);
 	scene.Add(go);
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	go = std::make_shared<GameObject>();
-	go->AddComponent<TextureRenderer>();
-	auto to = go->AddComponent<Text>();
+	go->AddComponent<C_Renderer>();
+	auto to = go->AddComponent<C_Text>();
 	to->SetText("Programming 4 assignment");
 	to->SetFont(font);
-	go->GetComponent<Transform>()->SetPosition(80, 20, 0);
+	go->GetComponent<C_Transform>()->SetPosition(80, 20, 0);
 	scene.Add(go);
 
 	go = std::make_shared<GameObject>();
-	go->AddComponent<TextureRenderer>();
-	to = go->AddComponent<Text>();
+	go->AddComponent<C_Renderer>();
+	to = go->AddComponent<C_Text>();
 	to->SetText("FPS");
 	to->SetFont(font);
-	go->AddComponent<FPSCounter>();
-	go->GetComponent<Transform>()->SetPosition(10, 10, 0);
+	go->AddComponent<C_FPSCounter>();
+	go->GetComponent<C_Transform>()->SetPosition(10, 10, 0);
 	scene.Add(go);
 }
 

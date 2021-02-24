@@ -3,7 +3,7 @@
 namespace dae
 {
 	class Component;
-	class Transform;
+	class C_Transform;
 
 	class GameObject final
 	{
@@ -56,11 +56,11 @@ namespace dae
 			return pNewComponent;
 		}
 
-		Transform* GetTransform() const;
+		C_Transform* GetTransform() const;
 
 	private:
 		std::vector<Component*> m_pComponents;
-		Transform* m_pTransform;
+		C_Transform* m_pTransform;
 		bool m_IsDead;
 	};
 }

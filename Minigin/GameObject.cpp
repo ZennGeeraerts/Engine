@@ -1,13 +1,13 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
-#include "Transform.h"
+#include "C_Transform.h"
 
 dae::GameObject::GameObject()
 	: m_pComponents{}
 	, m_pTransform{ nullptr }
 	, m_IsDead{ false }
 {
-	m_pTransform = AddComponent<Transform>();
+	m_pTransform = AddComponent<C_Transform>();
 }
 
 dae::GameObject::~GameObject()
@@ -50,7 +50,7 @@ void dae::GameObject::Render() const
 	}
 }
 
-dae::Transform* dae::GameObject::GetTransform() const
+dae::C_Transform* dae::GameObject::GetTransform() const
 {
 	return m_pTransform;
 }

@@ -24,6 +24,9 @@
     <Filter Include="Source Files\SceneObjects\Component\Base">
       <UniqueIdentifier>{c2d93811-7f3f-41b9-938f-cf4184953a89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\imgui">
+      <UniqueIdentifier>{c5b3b1d7-8e1d-41bc-b535-f2e4068c36fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Font.h">
@@ -68,17 +71,41 @@
     <ClInclude Include="Component.h">
       <Filter>Source Files\SceneObjects\Component\Base</Filter>
     </ClInclude>
-    <ClInclude Include="TextureRenderer.h">
+    <ClInclude Include="C_FPSCounter.h">
       <Filter>Source Files\SceneObjects\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
+    <ClInclude Include="C_Text.h">
       <Filter>Source Files\SceneObjects\Component</Filter>
     </ClInclude>
-    <ClInclude Include="FPSCounter.h">
+    <ClInclude Include="C_Renderer.h">
       <Filter>Source Files\SceneObjects\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
+    <ClInclude Include="C_Transform.h">
       <Filter>Source Files\SceneObjects\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imconfig.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imgui.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imgui_internal.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imstb_rectpack.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imstb_textedit.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\backends\imgui_impl_sdl.h">
+      <Filter>Source Files\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -121,17 +148,38 @@
     <ClCompile Include="Component.cpp">
       <Filter>Source Files\SceneObjects\Component\Base</Filter>
     </ClCompile>
-    <ClCompile Include="TextureRenderer.cpp">
+    <ClCompile Include="C_FPSCounter.cpp">
       <Filter>Source Files\SceneObjects\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
+    <ClCompile Include="C_Text.cpp">
       <Filter>Source Files\SceneObjects\Component</Filter>
     </ClCompile>
-    <ClCompile Include="FPSCounter.cpp">
+    <ClCompile Include="C_Renderer.cpp">
       <Filter>Source Files\SceneObjects\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Text.cpp">
+    <ClCompile Include="C_Transform.cpp">
       <Filter>Source Files\SceneObjects\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_demo.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_draw.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_tables.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_widgets.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_sdl.cpp">
+      <Filter>Source Files\imgui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

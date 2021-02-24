@@ -12,38 +12,38 @@ Scene::~Scene() = default;
 
 void Scene::Add(const std::shared_ptr<GameObject>& object)
 {
-	m_Objects.push_back(object);
+	m_pGameObjects.push_back(object);
 }
 
 void Scene::Update()
 {
-	for(auto& object : m_Objects)
+	for(auto& pObject : m_pGameObjects)
 	{
-		object->Update();
+		pObject->Update();
 	}
 }
 
 void Scene::FixedUpdate()
 {
-	for (auto& object : m_Objects)
+	for (auto& pObject : m_pGameObjects)
 	{
-		object->FixedUpdate();
+		pObject->FixedUpdate();
 	}
 }
 
 void Scene::LateUpdate()
 {
-	for (auto& object : m_Objects)
+	for (auto& pObject : m_pGameObjects)
 	{
-		object->LateUpdate();
+		pObject->LateUpdate();
 	}
 }
 
 void Scene::Render() const
 {
-	for (const auto& object : m_Objects)
+	for (const auto& pObject : m_pGameObjects)
 	{
-		object->Render();
+		pObject->Render();
 	}
 }
 
