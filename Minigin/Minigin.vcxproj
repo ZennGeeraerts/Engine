@@ -205,10 +205,10 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Font.h" />
     <ClInclude Include="C_FPSCounter.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="InputCommands.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
-    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -216,9 +216,10 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="C_Text.h" />
     <ClInclude Include="Texture2D.h" />
-    <ClInclude Include="C_Renderer.h" />
+    <ClInclude Include="C_Render.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="C_Transform.h" />
+    <ClInclude Include="XBoxController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.cpp" />
@@ -232,6 +233,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="C_FPSCounter.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="InputCommands.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Minigin.cpp" />
@@ -248,9 +250,10 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="C_Text.cpp" />
     <ClCompile Include="Texture2D.cpp" />
-    <ClCompile Include="C_Renderer.cpp" />
+    <ClCompile Include="C_Render.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="C_Transform.cpp" />
+    <ClCompile Include="XBoxController.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

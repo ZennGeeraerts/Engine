@@ -5,10 +5,10 @@ namespace dae
 {
 	class Texture2D;
 
-	class C_Renderer final : public Component
+	class C_Render final : public Component
 	{
 	public:
-		C_Renderer(GameObject* pGameObject);
+		C_Render(GameObject* pGameObject);
 		void Render() const override;
 		void SetTexture(const std::string& filename);
 		void SetTexture(const std::shared_ptr<Texture2D>& pTexture);

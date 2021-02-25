@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "C_Renderer.h"
+#include "C_Render.h"
 
 namespace dae
 {
@@ -25,6 +25,6 @@ namespace dae
 		bool m_NeedsUpdate;
 		std::string m_Text;
 		std::shared_ptr<Font> m_Font;
-		C_Renderer* m_pRendererComponent;
+		C_Render* m_pRendererComponent;
 	};
 }

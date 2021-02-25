@@ -1,42 +1,72 @@
-#include "MiniginPCH.h"
 #include "InputManager.h"
-#include <SDL.h>
+#include "InputCommands.h"
 
+dae::InputManager::~InputManager()
+{
+	for (auto& command : m_CommandsMap)
+	{
+		delete command.second;
+	}
+
+	m_CommandsMap.clear();
+}
 
 bool dae::InputManager::ProcessInput()
 {
-	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-	XInputGetState(0, &m_CurrentState);
+	m_Controller.ProcessInput();
+	return HandleInput();
+}
 
-	SDL_Event e;
-	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) {
-			return false;
-		}
-		if (e.type == SDL_KEYDOWN) {
-			
-		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
+bool dae::InputManager::HandleInput()
+{
+	for (auto& command : m_CommandsMap)
+	{
+		if (CheckCommandExecution(command))
+		{
+			if (!command.second->Execute())
+			{
+				return false;
+			}
 		}
 	}
 
 	return true;
 }
 
-bool dae::InputManager::IsPressed(ControllerButton button) const
+bool dae::InputManager::CheckCommandExecution(const std::pair<XBoxController::ControllerButton, InputCommand*>& commandPair) const
 {
-	switch (button)
+	switch (commandPair.second->GetInputKeyAction())
 	{
-	case ControllerButton::ButtonA:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-	case ControllerButton::ButtonB:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-	case ControllerButton::ButtonX:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-	case ControllerButton::ButtonY:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-	default: return false;
+	case InputKeyAction::ePressed:
+		return IsPressed(commandPair.first);
+		break;
+	case InputKeyAction::eReleased:
+		return IsReleased(commandPair.first);
+		break;
+	case InputKeyAction::eDown:
+		return IsDown(commandPair.first);
+		break;
 	}
+
+	return false;
 }
 
+bool dae::InputManager::IsPressed(XBoxController::ControllerButton button) const
+{
+	return m_Controller.IsPressed(button);
+}
+
+bool dae::InputManager::IsDown(XBoxController::ControllerButton button) const
+{
+	return m_Controller.IsDown(button);
+}
+
+bool dae::InputManager::IsReleased(XBoxController::ControllerButton button) const
+{
+	return m_Controller.IsReleased(button);
+}
+
+void dae::InputManager::AddInputAction(XBoxController::ControllerButton button, InputCommand* pCommand)
+{
+	m_CommandsMap[button] = pCommand;
+}

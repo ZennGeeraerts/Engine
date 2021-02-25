@@ -1,16 +1,16 @@
 #include "MiniginPCH.h"
-#include "C_Renderer.h"
+#include "C_Render.h"
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "C_Transform.h"
 
-dae::C_Renderer::C_Renderer(GameObject* pGameObject)
+dae::C_Render::C_Render(GameObject* pGameObject)
 	: Component(pGameObject)
 {
 
 }
 
-void dae::C_Renderer::Render() const
+void dae::C_Render::Render() const
 {
 	if (m_pTexture)
 	{
@@ -19,12 +19,12 @@ void dae::C_Renderer::Render() const
 	}
 }
 
-void dae::C_Renderer::SetTexture(const std::string& filename)
+void dae::C_Render::SetTexture(const std::string& filename)
 {
 	m_pTexture = dae::ResourceManager::GetInstance().LoadTexture(filename);
 }
 
-void dae::C_Renderer::SetTexture(const std::shared_ptr<Texture2D>& pTexture)
+void dae::C_Render::SetTexture(const std::shared_ptr<Texture2D>& pTexture)
 {
 	m_pTexture = pTexture;
 }

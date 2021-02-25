@@ -10,7 +10,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
-#include "C_Renderer.h"
+#include "C_Render.h"
 #include "C_Transform.h"
 #include "C_FPSCounter.h"
 
@@ -48,19 +48,19 @@ void dae::Minigin::LoadGame() const
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
 	auto go = std::make_shared<GameObject>();
-	auto renderer = go->AddComponent<C_Renderer>();
+	auto renderer = go->AddComponent<C_Render>();
 	renderer->SetTexture("background.jpg");
 	scene.Add(go);
 
 	go = std::make_shared<GameObject>();
-	renderer = go->AddComponent<C_Renderer>();
+	renderer = go->AddComponent<C_Render>();
 	renderer->SetTexture("logo.png");
 	go->GetComponent<C_Transform>()->SetPosition(216, 180, 0);
 	scene.Add(go);
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	go = std::make_shared<GameObject>();
-	go->AddComponent<C_Renderer>();
+	go->AddComponent<C_Render>();
 	auto to = go->AddComponent<C_Text>();
 	to->SetText("Programming 4 assignment");
 	to->SetFont(font);
@@ -68,7 +68,7 @@ void dae::Minigin::LoadGame() const
 	scene.Add(go);
 
 	go = std::make_shared<GameObject>();
-	go->AddComponent<C_Renderer>();
+	go->AddComponent<C_Render>();
 	to = go->AddComponent<C_Text>();
 	to->SetText("FPS");
 	to->SetFont(font);

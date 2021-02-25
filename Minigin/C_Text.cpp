@@ -18,7 +18,7 @@ dae::C_Text::C_Text(GameObject* pGameObject)
 	, m_Font{ ResourceManager::GetInstance().LoadFont("Lingua.otf", 36) }
 	, m_pRendererComponent{ nullptr }
 {
-	m_pRendererComponent = pGameObject->GetComponent<C_Renderer>();
+	m_pRendererComponent = pGameObject->GetComponent<C_Render>();
 	if (!m_pRendererComponent)
 	{
 		std::cerr << "No TextureRenderer found for text" << endl;
