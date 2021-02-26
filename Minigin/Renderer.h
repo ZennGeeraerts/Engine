@@ -25,7 +25,6 @@ namespace dae
 	private:
 		SDL_Renderer* m_Renderer{};
 		SDL_Window* m_Window{};
-		bool m_ShowDemo{};
 	};
 }
 

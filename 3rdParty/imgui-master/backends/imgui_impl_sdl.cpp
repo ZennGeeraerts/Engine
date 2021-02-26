@@ -47,8 +47,8 @@
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
+//#define WIN32_LEAN_AND_MEAN
+//#include <Windows.h>
 
 // SDL
 #include <SDL.h>

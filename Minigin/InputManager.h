@@ -2,7 +2,6 @@
 #include "Singleton.h"
 #include "XBoxController.h"
 #include <map>
-#include <vector>
 
 namespace dae
 {

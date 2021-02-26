@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <Xinput.h>
+#pragma comment(lib, "XInput.lib")
 
 namespace dae
 {

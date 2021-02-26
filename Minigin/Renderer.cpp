@@ -21,8 +21,6 @@ void dae::Renderer::Init(SDL_Window * window)
 	ImGui::CreateContext();
 	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
 	ImGui_ImplOpenGL2_Init();
-
-	m_ShowDemo = true;
 }
 
 void dae::Renderer::Render()

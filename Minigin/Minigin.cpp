@@ -6,13 +6,19 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include <SDL.h>
-#include "C_Text.h"
+
 #include "GameObject.h"
 #include "Scene.h"
 #include "Time.h"
+
+#include "C_Text.h"
 #include "C_Render.h"
 #include "C_Transform.h"
 #include "C_FPSCounter.h"
+#include "C_Health.h"
+
+#include "InputCommands.h"
+#include "InputManager.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -47,34 +53,43 @@ void dae::Minigin::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	auto go = std::make_shared<GameObject>();
-	auto renderer = go->AddComponent<C_Render>();
-	renderer->SetTexture("background.jpg");
-	scene.Add(go);
+	auto pGameObject = std::make_shared<GameObject>();
+	auto pRenderer = pGameObject->AddComponent<C_Render>();
+	pRenderer->SetTexture("background.jpg");
+	scene.Add(pGameObject);
 
-	go = std::make_shared<GameObject>();
-	renderer = go->AddComponent<C_Render>();
-	renderer->SetTexture("logo.png");
-	go->GetComponent<C_Transform>()->SetPosition(216, 180, 0);
-	scene.Add(go);
+	pGameObject = std::make_shared<GameObject>();
+	pRenderer = pGameObject->AddComponent<C_Render>();
+	pRenderer->SetTexture("logo.png");
+	pGameObject->GetComponent<C_Transform>()->SetPosition(216, 180, 0);
+	scene.Add(pGameObject);
 
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	go = std::make_shared<GameObject>();
-	go->AddComponent<C_Render>();
-	auto to = go->AddComponent<C_Text>();
-	to->SetText("Programming 4 assignment");
-	to->SetFont(font);
-	go->GetComponent<C_Transform>()->SetPosition(80, 20, 0);
-	scene.Add(go);
+	pGameObject = std::make_shared<GameObject>();
+	pGameObject->AddComponent<C_Render>();
+	auto pText = pGameObject->AddComponent<C_Text>();
+	pText->SetText("Programming 4 assignment");
+	pText->SetFont(font);
+	pGameObject->GetComponent<C_Transform>()->SetPosition(80, 20, 0);
+	scene.Add(pGameObject);
 
-	go = std::make_shared<GameObject>();
-	go->AddComponent<C_Render>();
-	to = go->AddComponent<C_Text>();
-	to->SetText("FPS");
-	to->SetFont(font);
-	go->AddComponent<C_FPSCounter>();
-	go->GetComponent<C_Transform>()->SetPosition(10, 10, 0);
-	scene.Add(go);
+	pGameObject = std::make_shared<GameObject>();
+	pGameObject->AddComponent<C_Render>();
+	pText = pGameObject->AddComponent<C_Text>();
+	pText->SetText("FPS");
+	pText->SetFont(font);
+	pGameObject->AddComponent<C_FPSCounter>();
+	pGameObject->GetComponent<C_Transform>()->SetPosition(10, 10, 0);
+	scene.Add(pGameObject);
+
+	// Create QBert GameObject
+	auto& inputManager{ InputManager::GetInstance() };
+	auto pQBert = new GameObject{ "Q*Bert" };
+	auto pHealth = pQBert->AddComponent<C_Health>();
+	pHealth->SetHealth(1);
+	inputManager.AddInputAction(XBoxController::ControllerButton::eButtonA, new PlayerDie{ pQBert, InputManager::InputKeyAction::ePressed });
+	inputManager.AddInputAction(XBoxController::ControllerButton::eButtonY, new Quit{ InputManager::InputKeyAction::ePressed });
+	scene.Add(std::shared_ptr<GameObject>{ pQBert });
 }
 
 void dae::Minigin::Cleanup()
@@ -104,6 +119,7 @@ void dae::Minigin::Run()
 		bool doContinue = true;
 		while (doContinue)
 		{
+			const auto currentTime = high_resolution_clock::now();
 			time.Update();
 			doContinue = input.ProcessInput();
 
@@ -115,6 +131,9 @@ void dae::Minigin::Run()
 			sceneManager.LateUpdate();
 
 			renderer.Render();
+
+			auto sleepTime = duration_cast<duration<float>>(time.GetTimeBeforeGameLoop() + milliseconds(time.GetMsPerFrame()) - high_resolution_clock::now());
+			this_thread::sleep_for(sleepTime);
 		}
 	}
 

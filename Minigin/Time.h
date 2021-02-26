@@ -13,6 +13,8 @@ public:
 	float GetTotalTimePassed() const;
 	uint32_t GetFPS() const;
 	void SetMsPerFrame(uint32_t msPerFrame);
+	uint32_t GetMsPerFrame() const;
+	std::chrono::steady_clock::time_point GetTimeBeforeGameLoop() const;
 
 private:
 	friend class Singleton<Time>;

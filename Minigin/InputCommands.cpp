@@ -1,4 +1,7 @@
+#include "MiniginPCH.h"
 #include "InputCommands.h"
+#include "GameObject.h"
+#include "C_Health.h"
 
 dae::InputCommand::InputCommand(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction)
 	: m_pGameObject{ pGameObject }
@@ -22,4 +25,22 @@ dae::Quit::Quit(InputManager::InputKeyAction inputKeyAction)
 bool dae::Quit::Execute()
 {
 	return false;
+}
+
+// PlayerDie
+dae::PlayerDie::PlayerDie(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction)
+	: InputCommand(pGameObject, inputKeyAction)
+{
+
+}
+
+bool dae::PlayerDie::Execute()
+{
+	auto pHealth = m_pGameObject->GetComponent<C_Health>();
+	if (pHealth)
+	{
+		pHealth->Kill();
+	}
+
+	return true;
 }

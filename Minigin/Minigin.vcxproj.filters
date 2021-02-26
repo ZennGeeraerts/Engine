@@ -27,6 +27,9 @@
     <Filter Include="Source Files\GameObjects\Base">
       <UniqueIdentifier>{d69b55a2-d2ca-48d3-b469-efc745101dd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{c6cee8c3-516d-44fb-ac31-2d09cc1fb6ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Font.h">
@@ -110,6 +113,15 @@
     <ClInclude Include="C_Render.h">
       <Filter>Source Files\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Health.h">
+      <Filter>Source Files\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -188,6 +200,15 @@
       <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="C_Render.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Source Files\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source Files\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Health.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>

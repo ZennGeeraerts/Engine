@@ -1,7 +1,5 @@
+#include "MiniginPCH.h"
 #include "XBoxController.h"
-#include <Windows.h>
-#include <Xinput.h>
-#pragma comment(lib, "XInput.lib")
 
 dae::XBoxController::XBoxController(int index)
 	: m_Index{ index }

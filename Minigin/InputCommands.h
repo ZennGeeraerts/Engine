@@ -25,4 +25,11 @@ namespace dae
 		Quit(InputManager::InputKeyAction inputKeyAction);
 		bool Execute() override;
 	};
+
+	class PlayerDie : public InputCommand
+	{
+	public:
+		PlayerDie(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction);
+		bool Execute() override;
+	};
 }

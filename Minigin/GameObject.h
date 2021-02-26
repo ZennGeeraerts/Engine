@@ -9,6 +9,7 @@ namespace dae
 	{
 	public:
 		GameObject();
+		GameObject(const std::string& name);
 		virtual ~GameObject();
 		GameObject(const GameObject & other) = delete;
 		GameObject(GameObject && other) = delete;
@@ -56,11 +57,18 @@ namespace dae
 			return pNewComponent;
 		}
 
+		//std::ostream& operator<<(std::ostream& os, const GameObject& dt);
+
 		C_Transform* GetTransform() const;
+		const std::string& GetName() const;
+		static int GetInstanceCount();
 
 	private:
 		std::vector<Component*> m_pComponents;
+		std::string m_Name;
 		C_Transform* m_pTransform;
 		bool m_IsDead;
+
+		static int m_InstanceCount;
 	};
 }

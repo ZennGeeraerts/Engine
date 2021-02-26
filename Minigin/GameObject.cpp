@@ -2,12 +2,23 @@
 #include "GameObject.h"
 #include "C_Transform.h"
 
+int dae::GameObject::m_InstanceCount{ 0 };
+
 dae::GameObject::GameObject()
+	: GameObject("GameObject" + m_InstanceCount)
+{
+	
+}
+
+dae::GameObject::GameObject(const std::string& name)
 	: m_pComponents{}
+	, m_Name{ name }
 	, m_pTransform{ nullptr }
 	, m_IsDead{ false }
 {
 	m_pTransform = AddComponent<C_Transform>();
+
+	++m_InstanceCount;
 }
 
 dae::GameObject::~GameObject()
@@ -53,4 +64,14 @@ void dae::GameObject::Render() const
 dae::C_Transform* dae::GameObject::GetTransform() const
 {
 	return m_pTransform;
+}
+
+const std::string& dae::GameObject::GetName() const
+{
+	return m_Name;
+}
+
+int dae::GameObject::GetInstanceCount()
+{
+	return m_InstanceCount;
 }

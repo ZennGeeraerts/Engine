@@ -66,3 +66,13 @@ void Time::SetMsPerFrame(uint32_t msPerFrame)
 {
 	m_MsPerFrame = msPerFrame;
 }
+
+uint32_t Time::GetMsPerFrame() const
+{
+	return m_MsPerFrame;
+}
+
+std::chrono::steady_clock::time_point Time::GetTimeBeforeGameLoop() const
+{
+	return m_LastTime;
+}
