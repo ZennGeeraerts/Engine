@@ -4,9 +4,10 @@
 #include "Subject.h"
 
 #include "C_Transform.h"
+#include "C_Lives.h"
 
-dae::Observer::Observer(Subject* pSubject)
-	: m_pSubject{ pSubject }
+dae::Observer::Observer(const std::vector<Subject*> pSubjects)
+	: m_pSubjects{ pSubjects }
 	, m_pNext{ nullptr }
 {
 
@@ -14,21 +15,11 @@ dae::Observer::Observer(Subject* pSubject)
 
 dae::Observer::~Observer()
 {
-	if (m_pSubject)
+	for (auto pSubject : m_pSubjects)
 	{
-		m_pSubject->RemoveObserver(this);
+		if (pSubject)
+		{
+			pSubject->RemoveObserver(this);
+		}
 	}
-}
-
-
-// OnDead
-dae::OnDead::OnDead(Subject* pSubject)
-	: Observer(pSubject)
-{
-
-}
-
-void dae::OnDead::Notify(GameObject* pGameObject, const std::string& eventName)
-{
-	std::cout << eventName << ": " << pGameObject->GetName() << " PlayerDied" << std::endl;
 }

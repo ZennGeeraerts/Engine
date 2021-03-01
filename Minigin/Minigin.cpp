@@ -11,14 +11,20 @@
 #include "Scene.h"
 #include "Time.h"
 
+// Components
 #include "C_Text.h"
 #include "C_Render.h"
 #include "C_Transform.h"
 #include "C_FPSCounter.h"
-#include "C_Health.h"
 
-#include "InputCommands.h"
-#include "InputManager.h"
+// UI
+#include "UIManager.h"
+#include "GameModeMenu.h"
+#include "ControlsMenu.h"
+
+// Prefabs
+#include "Player.h"
+#include <glm/vec2.hpp>
 
 using namespace std;
 using namespace std::chrono;
@@ -30,7 +36,7 @@ void dae::Minigin::Initialize()
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
-	m_Window = SDL_CreateWindow(
+	m_pWindow = SDL_CreateWindow(
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
@@ -38,12 +44,12 @@ void dae::Minigin::Initialize()
 		480,
 		SDL_WINDOW_OPENGL
 	);
-	if (m_Window == nullptr) 
+	if (m_pWindow == nullptr) 
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
 
-	Renderer::GetInstance().Init(m_Window);
+	Renderer::GetInstance().Init(m_pWindow);
 }
 
 /**
@@ -52,6 +58,11 @@ void dae::Minigin::Initialize()
 void dae::Minigin::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
+	auto& uiManager = UIManager::GetInstance();
+
+	// UI
+	uiManager.AddUILayer(new GameModeMenu{ glm::vec2{ 200.f, 0.0f }, m_pWindow });
+	uiManager.AddUILayer(new ControlsMenu{ glm::vec2{ 200.f, 150.f }, m_pWindow });
 
 	auto pGameObject = std::make_shared<GameObject>();
 	auto pRenderer = pGameObject->AddComponent<C_Render>();
@@ -82,21 +93,18 @@ void dae::Minigin::LoadGame() const
 	pGameObject->GetComponent<C_Transform>()->SetPosition(10, 10, 0);
 	scene.Add(pGameObject);
 
-	// Create QBert GameObject
-	auto& inputManager{ InputManager::GetInstance() };
-	auto pQBert = new GameObject{ "Q*Bert" };
-	auto pHealth = pQBert->AddComponent<C_Health>();
-	pHealth->SetHealth(1);
-	inputManager.AddInputAction(XBoxController::ControllerButton::eButtonA, new PlayerDie{ pQBert, InputManager::InputKeyAction::ePressed });
-	inputManager.AddInputAction(XBoxController::ControllerButton::eButtonY, new Quit{ InputManager::InputKeyAction::ePressed });
-	scene.Add(std::shared_ptr<GameObject>{ pQBert });
+	std::shared_ptr<Player> pPlayer = std::make_shared<Player>(Player{ glm::vec2{ 0.0f, 0.0f }, m_pWindow, XBoxController::ControllerButton::eButtonA, XBoxController::ControllerButton::eButtonB });
+	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });
+
+	pPlayer = std::make_shared<Player>(Player{ glm::vec2{ 0.0f, 150.0f }, m_pWindow, XBoxController::ControllerButton::eButtonDown, XBoxController::ControllerButton::eButtonRight });
+	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });
 }
 
 void dae::Minigin::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
-	SDL_DestroyWindow(m_Window);
-	m_Window = nullptr;
+	SDL_DestroyWindow(m_pWindow);
+	m_pWindow = nullptr;
 	SDL_Quit();
 }
 

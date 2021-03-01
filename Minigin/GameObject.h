@@ -4,12 +4,13 @@ namespace dae
 {
 	class Component;
 	class C_Transform;
+	class Subject;
 
 	class GameObject final
 	{
 	public:
 		GameObject();
-		GameObject(const std::string& name);
+		explicit GameObject(const std::string& name);
 		virtual ~GameObject();
 		GameObject(const GameObject & other) = delete;
 		GameObject(GameObject && other) = delete;
@@ -61,6 +62,7 @@ namespace dae
 
 		C_Transform* GetTransform() const;
 		const std::string& GetName() const;
+
 		static int GetInstanceCount();
 
 	private:

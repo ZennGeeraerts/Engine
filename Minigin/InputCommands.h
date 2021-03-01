@@ -32,4 +32,11 @@ namespace dae
 		PlayerDie(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction);
 		bool Execute() override;
 	};
+
+	class ScoreIncrease : public InputCommand
+	{
+	public:
+		ScoreIncrease(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction);
+		bool Execute() override;
+	};
 }

@@ -24,7 +24,7 @@ namespace dae
 		int GetOpenGLDriverIndex() const;
 	private:
 		SDL_Renderer* m_Renderer{};
-		SDL_Window* m_Window{};
+		SDL_Window* m_pWindow{};
 	};
 }
 

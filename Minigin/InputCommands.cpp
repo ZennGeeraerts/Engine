@@ -2,6 +2,7 @@
 #include "InputCommands.h"
 #include "GameObject.h"
 #include "C_Health.h"
+#include "C_Score.h"
 
 dae::InputCommand::InputCommand(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction)
 	: m_pGameObject{ pGameObject }
@@ -40,6 +41,25 @@ bool dae::PlayerDie::Execute()
 	if (pHealth)
 	{
 		pHealth->Kill();
+	}
+
+	return true;
+}
+
+
+// ScoreIncrease
+dae::ScoreIncrease::ScoreIncrease(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction)
+	: InputCommand(pGameObject, inputKeyAction)
+{
+
+}
+
+bool dae::ScoreIncrease::Execute()
+{
+	auto pScore = m_pGameObject->GetComponent<C_Score>();
+	if (pScore)
+	{
+		pScore->IncreaseScore(50);
 	}
 
 	return true;

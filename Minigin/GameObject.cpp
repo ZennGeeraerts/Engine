@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
 #include "C_Transform.h"
+#include "Subject.h"
 
 int dae::GameObject::m_InstanceCount{ 0 };
 

@@ -3,15 +3,16 @@
 #include <SDL.h>
 #include "SceneManager.h"
 #include "Texture2D.h"
+#include "UIManager.h"
 
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl2.h"
 
-void dae::Renderer::Init(SDL_Window * window)
+void dae::Renderer::Init(SDL_Window * pWindow)
 {
-	m_Window = window;
-	m_Renderer = SDL_CreateRenderer(window, GetOpenGLDriverIndex(), SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	m_pWindow = pWindow;
+	m_Renderer = SDL_CreateRenderer(pWindow, GetOpenGLDriverIndex(), SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (m_Renderer == nullptr) 
 	{
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
@@ -19,7 +20,7 @@ void dae::Renderer::Init(SDL_Window * window)
 
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
+	ImGui_ImplSDL2_InitForOpenGL(pWindow, SDL_GL_GetCurrentContext());
 	ImGui_ImplOpenGL2_Init();
 }
 
@@ -27,37 +28,31 @@ void dae::Renderer::Render()
 {
 	SDL_RenderClear(m_Renderer);
 
+	// Render scene
 	SceneManager::GetInstance().Render();
-
-	// imgui demo
+	// Render UI
 	ImGui_ImplOpenGL2_NewFrame();
-	ImGui_ImplSDL2_NewFrame(m_Window);
+	ImGui_ImplSDL2_NewFrame(m_pWindow);
 	ImGui::NewFrame();
-	
-	bool isClosable{ false };
-	ImGui::Begin("Settings", &isClosable);
-	ImGui::Button("single player");
-	ImGui::Button("co-op");
-	ImGui::Button("versus");
-	ImGui::End();
 
+	UIManager::GetInstance().Render();
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
-	
+
 	SDL_RenderPresent(m_Renderer);
 }
 
 void dae::Renderer::Destroy()
 {
-	ImGui_ImplOpenGL2_Shutdown();
-	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
-
 	if (m_Renderer != nullptr)
 	{
 		SDL_DestroyRenderer(m_Renderer);
 		m_Renderer = nullptr;
 	}
+
+	ImGui_ImplOpenGL2_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui::DestroyContext();
 }
 
 void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const

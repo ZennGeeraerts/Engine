@@ -69,5 +69,18 @@ bool dae::InputManager::IsReleased(XBoxController::ControllerButton button) cons
 
 void dae::InputManager::AddInputAction(XBoxController::ControllerButton button, InputCommand* pCommand)
 {
+	auto it = std::find_if(m_CommandsMap.begin(), m_CommandsMap.end(),
+		[button](const auto& command) 
+		{
+			return command.first == button;
+		}
+	);
+
+	if (it != m_CommandsMap.end())
+	{
+		delete (*it).second;
+		m_CommandsMap.erase(button);
+	}
+
 	m_CommandsMap[button] = pCommand;
 }

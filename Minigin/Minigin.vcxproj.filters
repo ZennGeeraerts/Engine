@@ -30,6 +30,27 @@
     <Filter Include="Source Files\Observer">
       <UniqueIdentifier>{c6cee8c3-516d-44fb-ac31-2d09cc1fb6ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="QBert">
+      <UniqueIdentifier>{0ff07f33-673b-47b2-9c27-0fd2cd430ffa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scene">
+      <UniqueIdentifier>{8c279e97-85a9-4fcc-8c9a-3f55fe8d2e11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{ec04f782-e378-4225-b954-190eae7b85be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\UILayers">
+      <UniqueIdentifier>{b014b0c4-7218-48d1-b74f-923418346b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI\UILayers\Base">
+      <UniqueIdentifier>{4cb4b408-af83-4d64-bf05-fc6961e148cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Prefabs">
+      <UniqueIdentifier>{f99e97c0-fb77-463c-bead-60c76740fb6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects\Prefabs\Base">
+      <UniqueIdentifier>{e2e9e42d-e5fe-4f62-9361-2d0269e1c279}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Font.h">
@@ -45,9 +66,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
@@ -122,6 +140,36 @@
     <ClInclude Include="C_Health.h">
       <Filter>Source Files\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UILayer.h">
+      <Filter>Source Files\UI\UILayers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameModeMenu.h">
+      <Filter>Source Files\UI\UILayers</Filter>
+    </ClInclude>
+    <ClInclude Include="Prefab.h">
+      <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Lives.h">
+      <Filter>Source Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>Source Files\UI\UILayers</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Score.h">
+      <Filter>Source Files\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlsMenu.h">
+      <Filter>Source Files\UI\UILayers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -134,9 +182,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
@@ -210,6 +255,36 @@
     </ClCompile>
     <ClCompile Include="C_Health.cpp">
       <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UILayer.cpp">
+      <Filter>Source Files\UI\UILayers\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="GameModeMenu.cpp">
+      <Filter>Source Files\UI\UILayers</Filter>
+    </ClCompile>
+    <ClCompile Include="Prefab.cpp">
+      <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Lives.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>Source Files\UI\UILayers</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Score.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlsMenu.cpp">
+      <Filter>Source Files\UI\UILayers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
