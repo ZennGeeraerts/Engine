@@ -2,7 +2,7 @@
 #include <chrono>
 #include "Singleton.h"
 
-class Time final : public dae::Singleton<Time>
+class SmTime final : public dae::Singleton<SmTime>
 {
 public:
 	void Run();
@@ -17,8 +17,8 @@ public:
 	std::chrono::steady_clock::time_point GetTimeBeforeGameLoop() const;
 
 private:
-	friend class Singleton<Time>;
-	Time();
+	friend class Singleton<SmTime>;
+	SmTime();
 
 	uint32_t m_MsPerFrame; /* amount of milliseconds per frame for the fixed update */
 	float m_Lag;

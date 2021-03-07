@@ -1,9 +1,9 @@
 #include "MiniginPCH.h"
-#include "Time.h"
+#include "SmTime.h"
 
 using namespace std::chrono;
 
-Time::Time()
+SmTime::SmTime()
 	: m_MsPerFrame{ 16 }
 	, m_Lag{ 0.0f }
 	, m_TotalTimePassed{ 0.0f }
@@ -15,13 +15,13 @@ Time::Time()
 
 }
 
-void Time::Run()
+void SmTime::Run()
 {
 	m_IsRunning = true;
 	m_LastTime = high_resolution_clock::now();
 }
 
-void Time::Update()
+void SmTime::Update()
 {
 	if (!m_IsRunning)
 	{
@@ -36,7 +36,7 @@ void Time::Update()
 	m_FPS = uint32_t(1.f / m_DeltaTime);
 }
 
-bool Time::IsCatchingUpInFixedSteps()
+bool SmTime::IsCatchingUpInFixedSteps()
 {
 	if (m_Lag >= m_MsPerFrame)
 	{
@@ -47,32 +47,32 @@ bool Time::IsCatchingUpInFixedSteps()
 	return false;
 }
 
-float Time::GetDeltaTime() const
+float SmTime::GetDeltaTime() const
 {
 	return m_DeltaTime;
 }
 
-float Time::GetTotalTimePassed() const
+float SmTime::GetTotalTimePassed() const
 {
 	return m_TotalTimePassed;
 }
 
-uint32_t Time::GetFPS() const
+uint32_t SmTime::GetFPS() const
 {
 	return m_FPS;
 }
 
-void Time::SetMsPerFrame(uint32_t msPerFrame)
+void SmTime::SetMsPerFrame(uint32_t msPerFrame)
 {
 	m_MsPerFrame = msPerFrame;
 }
 
-uint32_t Time::GetMsPerFrame() const
+uint32_t SmTime::GetMsPerFrame() const
 {
 	return m_MsPerFrame;
 }
 
-std::chrono::steady_clock::time_point Time::GetTimeBeforeGameLoop() const
+std::chrono::steady_clock::time_point SmTime::GetTimeBeforeGameLoop() const
 {
 	return m_LastTime;
 }

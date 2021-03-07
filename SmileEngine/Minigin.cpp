@@ -9,7 +9,7 @@
 
 #include "GameObject.h"
 #include "Scene.h"
-#include "Time.h"
+#include "SmTime.h"
 
 // Components
 #include "C_Text.h"
@@ -121,7 +121,7 @@ void dae::Minigin::Run()
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
-		auto& time{ Time::GetInstance() };
+		auto& time{ SmTime::GetInstance() };
 
 		time.Run();
 		bool doContinue = true;

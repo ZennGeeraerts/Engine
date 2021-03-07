@@ -1,6 +1,6 @@
 #include "MiniginPCH.h"
 #include "C_FPSCounter.h"
-#include "Time.h"
+#include "SmTime.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ void dae::C_FPSCounter::Update()
 		return;
 	}
 
-	auto& time{ Time::GetInstance() };
+	auto& time{ SmTime::GetInstance() };
 
 	m_ElapsedSec += time.GetDeltaTime();
 	if (m_ElapsedSec > m_UpdateRate)

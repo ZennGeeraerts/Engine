@@ -77,9 +77,6 @@
     <ClInclude Include="Texture2D.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Source Files\GameObjects\Base</Filter>
     </ClInclude>
@@ -170,6 +167,9 @@
     <ClInclude Include="ControlsMenu.h">
       <Filter>Source Files\UI\UILayers</Filter>
     </ClInclude>
+    <ClInclude Include="SmTime.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -194,9 +194,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Minigin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
@@ -285,6 +282,9 @@
     </ClCompile>
     <ClCompile Include="ControlsMenu.cpp">
       <Filter>Source Files\UI\UILayers</Filter>
+    </ClCompile>
+    <ClCompile Include="SmTime.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
