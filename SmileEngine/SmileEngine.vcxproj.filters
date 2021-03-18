@@ -56,10 +56,10 @@
     <ClInclude Include="Font.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Minigin.h">
+    <ClInclude Include="SmileEngine.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="MiniginPCH.h">
+    <ClInclude Include="SmileEnginePCH.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
@@ -170,9 +170,12 @@
     <ClInclude Include="SmTime.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="SmileEngineLibType.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MiniginPCH.cpp">
+    <ClCompile Include="SmileEnginePCH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
@@ -193,7 +196,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Minigin.cpp">
+    <ClCompile Include="SmileEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">

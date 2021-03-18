@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "SmileEnginePCH.h"
 #include "Component.h"
 
 dae::Component::Component(dae::GameObject* pGameObject)

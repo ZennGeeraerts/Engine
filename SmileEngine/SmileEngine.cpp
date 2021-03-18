@@ -1,5 +1,5 @@
-#include "MiniginPCH.h"
-#include "Minigin.h"
+#include "SmileEnginePCH.h"
+#include "SmileEngine.h"
 #include <thread>
 #include "InputManager.h"
 #include "SceneManager.h"
@@ -29,7 +29,7 @@
 using namespace std;
 using namespace std::chrono;
 
-void dae::Minigin::Initialize()
+void dae::SmileEngine::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
 	{
@@ -55,7 +55,7 @@ void dae::Minigin::Initialize()
 /**
  * Code constructing the scene world starts here
  */
-void dae::Minigin::LoadGame() const
+void dae::SmileEngine::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 	auto& uiManager = UIManager::GetInstance();
@@ -100,7 +100,7 @@ void dae::Minigin::LoadGame() const
 	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });
 }
 
-void dae::Minigin::Cleanup()
+void dae::SmileEngine::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_pWindow);
@@ -108,7 +108,7 @@ void dae::Minigin::Cleanup()
 	SDL_Quit();
 }
 
-void dae::Minigin::Run()
+void dae::SmileEngine::Run()
 {
 	Initialize();
 
