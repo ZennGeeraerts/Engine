@@ -15,6 +15,8 @@ public:
 	void SetMsPerFrame(uint32_t msPerFrame);
 	uint32_t GetMsPerFrame() const;
 	std::chrono::steady_clock::time_point GetTimeBeforeGameLoop() const;
+	bool GetDoContinue() const;
+	void SetDoContinue(bool doContinue);
 
 private:
 	friend class Singleton<SmTime>;
@@ -27,5 +29,6 @@ private:
 	uint32_t m_FPS;
 	std::chrono::steady_clock::time_point m_LastTime;
 	bool m_IsRunning;
+	bool m_DoContinue;
 };
 

@@ -51,6 +51,9 @@
     <Filter Include="Source Files\GameObjects\Prefabs\Base">
       <UniqueIdentifier>{e2e9e42d-e5fe-4f62-9361-2d0269e1c279}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Sound">
+      <UniqueIdentifier>{54ebcf8e-2961-47da-ab08-e0c482b5c75e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Font.h">
@@ -173,6 +176,21 @@
     <ClInclude Include="SmileEngineLibType.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="ServiceLocator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSystem.h">
+      <Filter>Source Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLSoundSystem.h">
+      <Filter>Source Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="NullSoundSystem.h">
+      <Filter>Source Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLInputSystem.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmileEnginePCH.cpp">
@@ -288,6 +306,21 @@
     </ClCompile>
     <ClCompile Include="SmTime.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSystem.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceLocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLSoundSystem.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="NullSoundSystem.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLInputSystem.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

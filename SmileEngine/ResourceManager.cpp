@@ -45,3 +45,14 @@ std::shared_ptr<dae::Font> dae::ResourceManager::LoadFont(const std::string& fil
 {
 	return std::make_shared<Font>(m_DataPath + file, size);
 }
+
+int dae::ResourceManager::AddSoundPath(const std::string& file)
+{
+	m_SoundPaths.push_back(m_DataPath + file);
+	return int(m_SoundPaths.size()) - 1;
+}
+
+const std::string& dae::ResourceManager::GetSoundPath(const int id)
+{
+	return m_SoundPaths.at(id);
+}

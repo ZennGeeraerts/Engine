@@ -11,6 +11,7 @@ SmTime::SmTime()
 	, m_FPS{ 0 }
 	, m_LastTime{}
 	, m_IsRunning{ false }
+	, m_DoContinue{ true }
 {
 
 }
@@ -75,4 +76,14 @@ uint32_t SmTime::GetMsPerFrame() const
 std::chrono::steady_clock::time_point SmTime::GetTimeBeforeGameLoop() const
 {
 	return m_LastTime;
+}
+
+bool SmTime::GetDoContinue() const
+{
+	return m_DoContinue;
+}
+
+void SmTime::SetDoContinue(bool doContinue)
+{
+	m_DoContinue = doContinue;
 }

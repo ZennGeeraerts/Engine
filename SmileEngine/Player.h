@@ -1,10 +1,6 @@
 #pragma once
 #include "Prefab.h"
 #include "XBoxController.h"
-#pragma warning(push)
-#pragma warning (disable:4201)
-#include <glm/vec2.hpp>
-#pragma warning(pop)
 
 struct SDL_Window;
 

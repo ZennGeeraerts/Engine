@@ -7,7 +7,7 @@
 
 
 dae::ControlsMenu::ControlsMenu(const glm::vec2& pos, SDL_Window* pWindow)
-	: UILayer(pos, "ControlsMenu", pWindow, std::vector<Subject*>{})
+	: UILayer(pos, "ControlsMenu", pWindow)
 {
 
 }
@@ -24,9 +24,4 @@ void dae::ControlsMenu::Render()
 	ImGui::Text("Quit: Y");
 
 	ImGui::End();
-}
-
-void dae::ControlsMenu::Notify(GameObject* pGameObject, const std::string& eventName)
-{
-	std::cout << eventName << ": " << pGameObject << std::endl;
 }

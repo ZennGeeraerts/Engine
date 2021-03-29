@@ -11,13 +11,17 @@
 #include "C_Score.h"
 
 dae::PlayerUI::PlayerUI(const glm::vec2& pos, SDL_Window* pWindow, const std::vector<Subject*>& pSubjects)
-	: UILayer(pos, "PlayerUI", pWindow, pSubjects)
+	: UILayer(pos, "PlayerUI", pWindow)
+	, Observer(pSubjects)
 	, m_PlayerName{ "Player" }
 	, m_NotifyText{ "" }
 	, m_RemainingLives{ 0 }
 	, m_Score{ 0 }
 {
-	
+	for (auto pSubject : pSubjects)
+	{
+		pSubject->AddObserver(this);
+	}
 }
 
 void dae::PlayerUI::Render()

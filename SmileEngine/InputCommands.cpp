@@ -4,6 +4,8 @@
 #include "C_Health.h"
 #include "C_Score.h"
 
+#include "ServiceLocator.h"
+
 dae::InputCommand::InputCommand(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction)
 	: m_pGameObject{ pGameObject }
 	, m_InputKeyAction{ inputKeyAction }
@@ -61,6 +63,8 @@ bool dae::ScoreIncrease::Execute()
 	{
 		pScore->IncreaseScore(50);
 	}
+
+	ServiceLocator::GetSoundSystem().Play(0, 100, "../Data/jump.wav" );
 
 	return true;
 }

@@ -1,13 +1,12 @@
 #include "SmileEnginePCH.h"
 #include "GameModeMenu.h"
-#include <glm/vec2.hpp>
 
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl2.h"
 
 dae::GameModeMenu::GameModeMenu(const glm::vec2& pos, SDL_Window* pWindow)
-	: UILayer(pos, "GameModeScene", pWindow, std::vector<Subject*>{})
+	: UILayer(pos, "GameModeScene", pWindow)
 {
 }
 
@@ -23,9 +22,4 @@ void dae::GameModeMenu::Render()
 	ImGui::Button("versus");
 
 	ImGui::End();
-}
-
-void dae::GameModeMenu::Notify(GameObject* pGameObject, const std::string& eventName)
-{
-	std::cout << eventName << ": " <<  pGameObject << std::endl;
 }

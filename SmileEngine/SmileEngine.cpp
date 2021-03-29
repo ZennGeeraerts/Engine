@@ -1,7 +1,6 @@
 #include "SmileEnginePCH.h"
 #include "SmileEngine.h"
 #include <thread>
-#include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
@@ -24,7 +23,14 @@
 
 // Prefabs
 #include "Player.h"
-#include <glm/vec2.hpp>
+
+// Input
+#include "InputManager.h"
+#include "InputCommands.h"
+
+// Sound
+#include "ServiceLocator.h"
+#include "SDLSoundSystem.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -50,6 +56,8 @@ void dae::SmileEngine::Initialize()
 	}
 
 	Renderer::GetInstance().Init(m_pWindow);
+
+	m_pSoundSystem = new SDLSoundSystem{};
 }
 
 /**
@@ -59,6 +67,12 @@ void dae::SmileEngine::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 	auto& uiManager = UIManager::GetInstance();
+	auto& inputManager = InputManager::GetInstance();
+
+	ServiceLocator::RegisterSoundSystem(m_pSoundSystem);
+
+	// Input
+	inputManager.AddInputAction(SDL_SCANCODE_A, new Quit{ InputManager::InputKeyAction::eDown });
 
 	// UI
 	uiManager.AddUILayer(new GameModeMenu{ glm::vec2{ 200.f, 0.0f }, m_pWindow });
@@ -106,6 +120,8 @@ void dae::SmileEngine::Cleanup()
 	SDL_DestroyWindow(m_pWindow);
 	m_pWindow = nullptr;
 	SDL_Quit();
+
+	delete m_pSoundSystem;
 }
 
 void dae::SmileEngine::Run()
@@ -124,12 +140,12 @@ void dae::SmileEngine::Run()
 		auto& time{ SmTime::GetInstance() };
 
 		time.Run();
-		bool doContinue = true;
+		bool doContinue = time.GetDoContinue();
 		while (doContinue)
 		{
-			const auto currentTime = high_resolution_clock::now();
 			time.Update();
 			doContinue = input.ProcessInput();
+			time.SetDoContinue(doContinue);
 
 			while (time.IsCatchingUpInFixedSteps())
 			{

@@ -2,6 +2,7 @@
 #include "Singleton.h"
 #include "XBoxController.h"
 #include <map>
+#include "SDLInputSystem.h"
 
 namespace dae
 {
@@ -22,15 +23,19 @@ namespace dae
 
 		bool IsPressed(XBoxController::ControllerButton button) const;
 		bool IsDown(XBoxController::ControllerButton button) const;
+		bool IsDown(SDL_Scancode button);
 		bool IsReleased(XBoxController::ControllerButton button) const;
 
 		void AddInputAction(XBoxController::ControllerButton button, InputCommand* pCommand);
+		void AddInputAction(SDL_Scancode button, InputCommand* pCommand);
 		
 	private:
 		bool HandleInput();
 		bool CheckCommandExecution(const std::pair<XBoxController::ControllerButton, InputCommand*>& commandPair) const;
 
 		XBoxController m_Controller{ 0 };
-		std::map<XBoxController::ControllerButton, InputCommand*> m_CommandsMap;
+		SDLInputSystem m_InputSystem;
+		std::map<XBoxController::ControllerButton, InputCommand*> m_ControllerCommandsMap;
+		std::map<SDL_Scancode, InputCommand*> m_KeyboardCommandsMap;
 	};
 }

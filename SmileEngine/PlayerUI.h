@@ -1,9 +1,10 @@
 #pragma once
 #include "UILayer.h"
+#include "Observer.h"
 
 namespace dae
 {
-	class PlayerUI final : public UILayer
+	class PlayerUI final : public UILayer, public Observer
 	{
 	public:
 		PlayerUI(const glm::vec2& pos, SDL_Window* pWindow, const std::vector<Subject*>& pSubjects);
