@@ -54,6 +54,9 @@
     <Filter Include="Source Files\Sound">
       <UniqueIdentifier>{54ebcf8e-2961-47da-ab08-e0c482b5c75e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Lua">
+      <UniqueIdentifier>{aa854eef-40c6-499f-828a-5c4465307d06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Font.h">
@@ -191,6 +194,15 @@
     <ClInclude Include="SDLInputSystem.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="NPCManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaFunctions.h">
+      <Filter>Source Files\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaVM.h">
+      <Filter>Source Files\Lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmileEnginePCH.cpp">
@@ -321,6 +333,15 @@
     </ClCompile>
     <ClCompile Include="SDLInputSystem.cpp">
       <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="NPCManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaFunctions.cpp">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaVM.cpp">
+      <Filter>Source Files\Lua</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -32,6 +32,10 @@
 #include "ServiceLocator.h"
 #include "SDLSoundSystem.h"
 
+// Lua
+#include "LuaVM.h"
+#include "LuaFunctions.h"
+
 using namespace std;
 using namespace std::chrono;
 
@@ -58,6 +62,14 @@ void dae::SmileEngine::Initialize()
 	Renderer::GetInstance().Init(m_pWindow);
 
 	m_pSoundSystem = new SDLSoundSystem{};
+
+	m_pLuaVM = new LuaVM{};
+	m_pLuaVM->ExecuteString("a = 1 + 1", "a");
+	m_pLuaVM->RegisterFunction("addNPC", dae::addNPC);
+	m_pLuaVM->RegisterFunction("removeNPC", dae::removeNPC);
+	m_pLuaVM->RegisterFunction("dump", dae::dump);
+	m_pLuaVM->RegisterFunction("setHealth", dae::setHealth);
+	m_pLuaVM->ExecuteFile("../Data/NPC.lua");
 }
 
 /**
@@ -122,6 +134,7 @@ void dae::SmileEngine::Cleanup()
 	SDL_Quit();
 
 	delete m_pSoundSystem;
+	delete m_pLuaVM;
 }
 
 void dae::SmileEngine::Run()
