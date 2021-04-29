@@ -158,9 +158,6 @@
     <ClInclude Include="Prefab.h">
       <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="C_Lives.h">
       <Filter>Source Files\Component</Filter>
     </ClInclude>
@@ -202,6 +199,18 @@
     </ClInclude>
     <ClInclude Include="LuaVM.h">
       <Filter>Source Files\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="C_QBertMovement.h">
+      <Filter>Source Files\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -301,9 +310,6 @@
     <ClCompile Include="Prefab.cpp">
       <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="C_Lives.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -342,6 +348,18 @@
     </ClCompile>
     <ClCompile Include="LuaVM.cpp">
       <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Source Files\GameObjects\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="C_QBertMovement.cpp">
+      <Filter>Source Files\Component</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

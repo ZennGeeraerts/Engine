@@ -1,6 +1,7 @@
 #include "SmileEnginePCH.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include <memory>
 
 using namespace dae;
 
@@ -47,3 +48,19 @@ void Scene::Render() const
 	}
 }
 
+GameObject* Scene::GetGameObjectByName(const std::string& name) const
+{
+	auto it = std::find_if(m_pGameObjects.begin(), m_pGameObjects.end(),
+		[name] (std::shared_ptr<dae::GameObject> pGameObject)
+		{
+			return pGameObject->GetName() == name;
+		});
+
+	if (it != m_pGameObjects.end())
+	{
+		return (*it).get();
+	}
+
+	std::cout << "Scene::GetGameObjectByName(const std::string& name) > name not found, returned nullptr" << std::endl;
+	return nullptr;
+}

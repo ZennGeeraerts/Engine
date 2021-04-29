@@ -16,6 +16,8 @@ namespace dae
 
 	private:
 		static const int MsPerFrame = 16; //16 for 60 fps, 33 for 30 fps
+		int m_WindowWidth;
+		int m_WindowHeight;
 		SDL_Window* m_pWindow{};
 		SoundSystem* m_pSoundSystem;
 		LuaVM* m_pLuaVM;

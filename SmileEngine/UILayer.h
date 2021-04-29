@@ -1,7 +1,5 @@
 #pragma once
 
-struct SDL_Window;
-
 namespace dae
 {
 	class Subject;
@@ -9,14 +7,13 @@ namespace dae
 	class UILayer
 	{
 	public:
-		UILayer(const glm::vec2& pos, const std::string& name, SDL_Window* pWindow);
-		virtual ~UILayer();
+		UILayer(const glm::vec2& pos, const std::string& name);
+		virtual ~UILayer() noexcept = default;
 
 		virtual void Render() = 0;
-		std::string GetName() const;
+		const std::string& GetName() const;
 
 	protected:
-		SDL_Window* m_pWindow;
 		glm::vec2 m_Position;
 
 	private:

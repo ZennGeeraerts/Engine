@@ -509,6 +509,7 @@ SDL2_ttf.lib
     <ClInclude Include="ControlsMenu.h" />
     <ClInclude Include="C_Health.h" />
     <ClInclude Include="C_Lives.h" />
+    <ClInclude Include="C_QBertMovement.h" />
     <ClInclude Include="C_Score.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="C_FPSCounter.h" />
@@ -519,6 +520,7 @@ SDL2_ttf.lib
     <ClInclude Include="LuaVM.h" />
     <ClInclude Include="NPCManager.h" />
     <ClInclude Include="NullSoundSystem.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SDLInputSystem.h" />
     <ClInclude Include="SDLSoundSystem.h" />
     <ClInclude Include="ServiceLocator.h" />
@@ -526,7 +528,6 @@ SDL2_ttf.lib
     <ClInclude Include="SmileEngineLibType.h" />
     <ClInclude Include="SmileEnginePCH.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerUI.h" />
     <ClInclude Include="Prefab.h" />
     <ClInclude Include="Renderer.h" />
@@ -542,6 +543,8 @@ SDL2_ttf.lib
     <ClInclude Include="C_Render.h" />
     <ClInclude Include="SmTime.h" />
     <ClInclude Include="C_Transform.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileMap.h" />
     <ClInclude Include="UILayer.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="XBoxController.h" />
@@ -621,6 +624,7 @@ SDL2_ttf.lib
     <ClCompile Include="ControlsMenu.cpp" />
     <ClCompile Include="C_Health.cpp" />
     <ClCompile Include="C_Lives.cpp" />
+    <ClCompile Include="C_QBertMovement.cpp" />
     <ClCompile Include="C_Score.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="C_FPSCounter.cpp" />
@@ -641,6 +645,7 @@ SDL2_ttf.lib
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NPCManager.cpp" />
     <ClCompile Include="NullSoundSystem.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDLInputSystem.cpp" />
     <ClCompile Include="SDLSoundSystem.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
@@ -658,7 +663,6 @@ SDL2_ttf.lib
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='DebugDLL|Win32'">SmileEnginePCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="Prefab.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -673,6 +677,8 @@ SDL2_ttf.lib
     <ClCompile Include="C_Render.cpp" />
     <ClCompile Include="SmTime.cpp" />
     <ClCompile Include="C_Transform.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="UILayer.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="XBoxController.cpp" />

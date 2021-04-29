@@ -12,9 +12,9 @@ namespace dae
 		C_Text(GameObject* pGameObject);
 		virtual ~C_Text() = default;
 		C_Text(const C_Text & other) = delete;
-		C_Text(C_Text && other) = delete;
+		C_Text(C_Text && other) noexcept = delete;
 		C_Text& operator=(const C_Text & other) = delete;
-		C_Text& operator=(C_Text && other) = delete;
+		C_Text& operator=(C_Text && other) noexcept = delete;
 
 		void Update() override;
 

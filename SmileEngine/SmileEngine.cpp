@@ -23,6 +23,7 @@
 
 // Prefabs
 #include "Player.h"
+#include "TileMap.h"
 
 // Input
 #include "InputManager.h"
@@ -46,12 +47,15 @@ void dae::SmileEngine::Initialize()
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
+	m_WindowWidth = 640;
+	m_WindowHeight = 480;
+
 	m_pWindow = SDL_CreateWindow(
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
-		480,
+		m_WindowWidth,
+		m_WindowHeight,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_pWindow == nullptr) 
@@ -78,7 +82,7 @@ void dae::SmileEngine::Initialize()
 void dae::SmileEngine::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-	auto& uiManager = UIManager::GetInstance();
+	//auto& uiManager = UIManager::GetInstance();
 	auto& inputManager = InputManager::GetInstance();
 
 	ServiceLocator::RegisterSoundSystem(m_pSoundSystem);
@@ -87,8 +91,8 @@ void dae::SmileEngine::LoadGame() const
 	inputManager.AddInputAction(SDL_SCANCODE_A, new Quit{ InputManager::InputKeyAction::eDown });
 
 	// UI
-	uiManager.AddUILayer(new GameModeMenu{ glm::vec2{ 200.f, 0.0f }, m_pWindow });
-	uiManager.AddUILayer(new ControlsMenu{ glm::vec2{ 200.f, 150.f }, m_pWindow });
+	//uiManager.AddUILayer(new GameModeMenu{ glm::vec2{ 200.f, 0.0f }, m_pWindow });
+	//uiManager.AddUILayer(new ControlsMenu{ glm::vec2{ 200.f, 150.f }, m_pWindow });
 
 	auto pGameObject = std::make_shared<GameObject>();
 	auto pRenderer = pGameObject->AddComponent<C_Render>();
@@ -119,11 +123,14 @@ void dae::SmileEngine::LoadGame() const
 	pGameObject->GetComponent<C_Transform>()->SetPosition(10, 10, 0);
 	scene.Add(pGameObject);
 
+	std::shared_ptr<TileMap> pTileMap = std::make_shared<TileMap>(TileMap{ m_WindowWidth, m_WindowHeight });
+	scene.Add(pTileMap->CreatePrefab());
+
 	std::shared_ptr<Player> pPlayer = std::make_shared<Player>(Player{ glm::vec2{ 0.0f, 0.0f }, m_pWindow, XBoxController::ControllerButton::eButtonA, XBoxController::ControllerButton::eButtonB });
 	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });
 
-	pPlayer = std::make_shared<Player>(Player{ glm::vec2{ 0.0f, 150.0f }, m_pWindow, XBoxController::ControllerButton::eButtonDown, XBoxController::ControllerButton::eButtonRight });
-	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });
+	/*pPlayer = std::make_shared<Player>(Player{ glm::vec2{ 0.0f, 150.0f }, m_pWindow, XBoxController::ControllerButton::eButtonDown, XBoxController::ControllerButton::eButtonRight });
+	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });*/
 }
 
 void dae::SmileEngine::Cleanup()

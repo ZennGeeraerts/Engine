@@ -10,9 +10,9 @@ namespace dae
 	{
 	public:
 		C_Health(GameObject* pGameObject);
-		~C_Health();
+		virtual ~C_Health() noexcept;
 		C_Health(const C_Health&) = delete;
-		C_Health(C_Health&&) = delete;
+		C_Health(C_Health&&) noexcept = delete;
 
 		void Update() override;
 
@@ -25,7 +25,7 @@ namespace dae
 		Subject* GetSubject() const;
 
 		C_Health& operator=(const C_Health&) = delete;
-		C_Health& operator=(C_Health&&) = delete;
+		C_Health& operator=(C_Health&&) noexcept = delete;
 
 	private:
 		int m_MaxHealth;

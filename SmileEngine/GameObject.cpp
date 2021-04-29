@@ -13,6 +13,7 @@ dae::GameObject::GameObject()
 
 dae::GameObject::GameObject(const std::string& name)
 	: m_pComponents{}
+	, m_pChildren{}
 	, m_Name{ name }
 	, m_pTransform{ nullptr }
 	, m_IsDead{ false }
@@ -28,6 +29,11 @@ dae::GameObject::~GameObject()
 	{
 		delete pComponent;
 	}
+
+	for (GameObject* pChild : m_pChildren)
+	{
+		delete pChild;
+	}
 }
 
 void dae::GameObject::Update()
@@ -35,6 +41,11 @@ void dae::GameObject::Update()
 	for (Component* pComponent : m_pComponents)
 	{
 		pComponent->Update();
+	}
+
+	for (GameObject* pChild : m_pChildren)
+	{
+		pChild->Update();
 	}
 }
 
@@ -44,6 +55,11 @@ void dae::GameObject::FixedUpdate()
 	{
 		pComponent->FixedUpdate();
 	}
+
+	for (GameObject* pChild : m_pChildren)
+	{
+		pChild->FixedUpdate();
+	}
 }
 
 void dae::GameObject::LateUpdate()
@@ -51,6 +67,11 @@ void dae::GameObject::LateUpdate()
 	for (Component* pComponent : m_pComponents)
 	{
 		pComponent->LateUpdate();
+	}
+
+	for (GameObject* pChild : m_pChildren)
+	{
+		pChild->LateUpdate();
 	}
 }
 
@@ -60,6 +81,49 @@ void dae::GameObject::Render() const
 	{
 		pComponent->Render();
 	}
+
+	for (GameObject* pChild : m_pChildren)
+	{
+		pChild->Render();
+	}
+}
+
+void dae::GameObject::AddChild(GameObject* pChild)
+{
+	m_pChildren.push_back(pChild);
+}
+
+dae::GameObject* dae::GameObject::GetChildByName(const std::string& name) const
+{
+	auto it = std::find_if(m_pChildren.begin(), m_pChildren.end(),
+		[name](GameObject* pChild)
+		{
+			return pChild->GetName() == name;
+		});
+
+	if (it != m_pChildren.end())
+	{
+		return (*it);
+	}
+
+	std::cout << "GameObject::GetChildByName(const std::string& name) > name not found, returned nullptr" << std::endl;
+	return nullptr;
+}
+
+dae::GameObject* dae::GameObject::GetChildByIndex(int index) const
+{
+	if ((index < m_pChildren.size()) && (index > -1))
+	{
+		return m_pChildren[index];
+	}
+
+	std::cout << "GameObject::GetChildByIndex(int index) > index out of range, returned nullptr" << std::endl;
+	return nullptr;
+}
+
+const std::vector<dae::GameObject*>& dae::GameObject::GetChildren() const
+{
+	return m_pChildren;
 }
 
 dae::C_Transform* dae::GameObject::GetTransform() const

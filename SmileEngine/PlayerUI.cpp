@@ -10,8 +10,8 @@
 #include "C_Lives.h"
 #include "C_Score.h"
 
-dae::PlayerUI::PlayerUI(const glm::vec2& pos, SDL_Window* pWindow, const std::vector<Subject*>& pSubjects)
-	: UILayer(pos, "PlayerUI", pWindow)
+dae::PlayerUI::PlayerUI(const glm::vec2& pos, const std::vector<Subject*>& pSubjects)
+	: UILayer(pos, "PlayerUI")
 	, Observer(pSubjects)
 	, m_PlayerName{ "Player" }
 	, m_NotifyText{ "" }

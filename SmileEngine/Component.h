@@ -7,7 +7,13 @@ namespace dae
 	{
 	public:
 		Component(GameObject* pGameObject);
-		virtual ~Component();
+
+		Component(const Component& other) = delete;
+		Component(Component&& other) noexcept = delete;
+		Component& operator=(const Component& other) = delete;
+		Component& operator=(Component&& other) noexcept = delete;
+
+		virtual ~Component() noexcept;
 		virtual void Update();
 		virtual void FixedUpdate();
 		virtual void LateUpdate();

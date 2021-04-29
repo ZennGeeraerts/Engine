@@ -7,7 +7,7 @@ namespace dae
 	class PlayerUI final : public UILayer, public Observer
 	{
 	public:
-		PlayerUI(const glm::vec2& pos, SDL_Window* pWindow, const std::vector<Subject*>& pSubjects);
+		PlayerUI(const glm::vec2& pos, const std::vector<Subject*>& pSubjects);
 		void Render() override;
 		void Notify(GameObject* pGameObject, const std::string& eventName) override;
 

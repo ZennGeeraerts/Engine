@@ -5,7 +5,7 @@ namespace dae
 	class GameModeMenu final : public UILayer
 	{
 	public:
-		GameModeMenu(const glm::vec2& pos, SDL_Window* pWindow);
+		GameModeMenu(const glm::vec2& pos);
 		void Render() override;
 	};
 }

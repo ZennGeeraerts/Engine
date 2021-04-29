@@ -40,3 +40,14 @@ dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
 	m_Scenes.push_back(scene);
 	return *scene;
 }
+
+std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int index) const
+{
+	if (index < m_Scenes.size() && (index > -1))
+	{
+		return m_Scenes[index];
+	}
+
+	std::cout << "SceneManager::GetScene(int index) > index out of range, returned nullptr" << std::endl;
+	return nullptr;
+}

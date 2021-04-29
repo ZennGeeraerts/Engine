@@ -5,8 +5,8 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl2.h"
 
-dae::GameModeMenu::GameModeMenu(const glm::vec2& pos, SDL_Window* pWindow)
-	: UILayer(pos, "GameModeScene", pWindow)
+dae::GameModeMenu::GameModeMenu(const glm::vec2& pos)
+	: UILayer(pos, "GameModeScene")
 {
 }
 

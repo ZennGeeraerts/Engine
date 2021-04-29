@@ -21,6 +21,8 @@ namespace dae
 		void LateUpdate();
 		void Render() const;
 
+		GameObject* GetGameObjectByName(const std::string& name) const;
+
 	private: 
 		explicit Scene(const std::string& name);
 

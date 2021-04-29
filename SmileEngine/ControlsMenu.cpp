@@ -6,8 +6,8 @@
 #include "imgui_impl_opengl2.h"
 
 
-dae::ControlsMenu::ControlsMenu(const glm::vec2& pos, SDL_Window* pWindow)
-	: UILayer(pos, "ControlsMenu", pWindow)
+dae::ControlsMenu::ControlsMenu(const glm::vec2& pos)
+	: UILayer(pos, "ControlsMenu")
 {
 
 }

@@ -13,6 +13,8 @@ namespace dae
 		void FixedUpdate();
 		void LateUpdate();
 		void Render();
+		std::shared_ptr<Scene> GetScene(int index) const;
+
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;

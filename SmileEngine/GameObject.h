@@ -58,6 +58,10 @@ namespace dae
 			return pNewComponent;
 		}
 
+		void AddChild(GameObject* pChild);
+		GameObject* GetChildByName(const std::string& name) const;
+		GameObject* GetChildByIndex(int index) const;
+		const std::vector<GameObject*>& GetChildren() const;
 		//std::ostream& operator<<(std::ostream& os, const GameObject& dt);
 
 		C_Transform* GetTransform() const;
@@ -67,6 +71,7 @@ namespace dae
 
 	private:
 		std::vector<Component*> m_pComponents;
+		std::vector<GameObject*> m_pChildren;
 		std::string m_Name;
 		C_Transform* m_pTransform;
 		bool m_IsDead;

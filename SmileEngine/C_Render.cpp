@@ -3,7 +3,6 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "C_Transform.h"
-
 dae::C_Render::C_Render(GameObject* pGameObject)
 	: Component(pGameObject)
 {
@@ -27,4 +26,9 @@ void dae::C_Render::SetTexture(const std::string& filename)
 void dae::C_Render::SetTexture(const std::shared_ptr<Texture2D>& pTexture)
 {
 	m_pTexture = pTexture;
+}
+
+std::shared_ptr<dae::Texture2D> dae::C_Render::GetTexture() const
+{
+	return m_pTexture;
 }
