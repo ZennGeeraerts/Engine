@@ -29,6 +29,11 @@ bool dae::InputManager::ProcessInput()
 
 bool dae::InputManager::HandleInput()
 {
+	if (!m_InputSystem.HandleInput())
+	{
+		return false;
+	}
+
 	for (auto& command : m_ControllerCommandsMap)
 	{
 		if (CheckCommandExecution(command))
