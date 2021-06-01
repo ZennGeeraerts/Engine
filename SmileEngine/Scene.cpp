@@ -7,13 +7,33 @@ using namespace dae;
 
 unsigned int Scene::m_IdCounter = 0;
 
-Scene::Scene(const std::string& name) : m_Name(name) {}
+Scene::Scene(const GameSettings& gameSettings)
+	: Scene(gameSettings, "")
+{
+
+}
+
+Scene::Scene(const GameSettings& gameSettings, const std::string& name) 
+	: m_Name(name)
+	, m_IsMarkedForDelete{ false }
+	, m_IsMarkedForRestart{ false }
+	, m_GameSettings{ gameSettings }
+{
+}
 
 Scene::~Scene() = default;
 
-void Scene::Add(const std::shared_ptr<GameObject>& object)
+void Scene::Add(const std::shared_ptr<GameObject>& pObject)
 {
-	m_pGameObjects.push_back(object);
+	if (!pObject->GetScene())
+	{ 
+		m_pGameObjects.push_back(pObject);
+		pObject->SetScene(this);
+	}
+	else
+	{
+		std::cout << "Scene::Add(const std::shared_ptr<GameObject>& pObject) > GameObject is already attached to a scene" << std::endl;
+	}
 }
 
 void Scene::Update()
@@ -63,4 +83,31 @@ GameObject* Scene::GetGameObjectByName(const std::string& name) const
 
 	std::cout << "Scene::GetGameObjectByName(const std::string& name) > name not found, returned nullptr" << std::endl;
 	return nullptr;
+}
+
+void Scene::MarkForDelete()
+{
+	m_IsMarkedForDelete = true;
+}
+
+void Scene::MarkForRestart()
+{
+	m_IsMarkedForRestart = true;
+}
+
+void Scene::Restart()
+{
+	m_pGameObjects.clear();
+	CreateScene();
+	m_IsMarkedForRestart = false;
+}
+
+bool Scene::GetIsMarkedForDelete() const
+{
+	return m_IsMarkedForDelete;
+}
+
+bool Scene::GetIsMarkedforRestart() const
+{
+	return m_IsMarkedForRestart;
 }

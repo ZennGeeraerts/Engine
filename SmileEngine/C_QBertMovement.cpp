@@ -4,6 +4,8 @@
 #include "C_Render.h"
 #include "Texture2D.h"
 #include "ServiceLocator.h"
+#include "SmTime.h"
+#include "Subject.h"
 
 dae::C_QBertMovement::C_QBertMovement(GameObject* pGameObject)
 	: Component(pGameObject)
@@ -11,14 +13,64 @@ dae::C_QBertMovement::C_QBertMovement(GameObject* pGameObject)
 	, m_pTransform{ pGameObject->GetTransform() }
 	, m_pTileMap{ nullptr }
 	, m_TileSize{ 0 }
+	, m_HasDestPosReached{ true }
+	, m_pSubject{ new Subject{} }
+	, m_StartTile{ 0 }
+	, m_TileChange{ TileChange::eNone }
 {
-
+	
 }
 
 void dae::C_QBertMovement::SetTileMap(GameObject* pTileMap)
 {
 	m_pTileMap = pTileMap;
 	m_TileSize = pTileMap->GetChildByIndex(0)->GetComponent<C_Render>()->GetTexture()->GetWidth();
+}
+
+void dae::C_QBertMovement::SetTexturePaths(const std::vector<std::string>& texturePaths)
+{
+	m_TexturePaths = texturePaths;
+}
+
+void dae::C_QBertMovement::SetStartTile(int tileIndex)
+{
+	m_StartTile = tileIndex;
+}
+
+void dae::C_QBertMovement::SetTileChange(TileChange tileChange)
+{
+	m_TileChange = tileChange;
+}
+
+void dae::C_QBertMovement::Update()
+{
+	if (!m_HasDestPosReached)
+	{
+		MoveToTile();
+	}
+}
+
+void dae::C_QBertMovement::MoveToStartTile(bool teleport)
+{
+	SetTile(m_StartTile, teleport);
+}
+
+void dae::C_QBertMovement::SetTile(int tileIndex, bool teleport)
+{
+	m_CurrentTileIndex = tileIndex;
+	m_HasDestPosReached = false;
+
+	if (teleport)
+	{
+		auto pTiles{ m_pTileMap->GetChildren() };
+
+		auto destPos = pTiles[m_CurrentTileIndex]->GetTransform()->GetPosition();
+		destPos.x += m_TileSize / 4.f;
+		destPos.y -= m_TileSize / 4.f;
+
+		m_pGameObject->GetTransform()->SetPosition(destPos);
+		m_HasDestPosReached = true;
+	}
 }
 
 void dae::C_QBertMovement::MoveBottomLeft()
@@ -29,12 +81,27 @@ void dae::C_QBertMovement::MoveBottomLeft()
 		return;
 	}
 
-	m_pGameObject->GetComponent<C_Render>()->SetTexture("qbert_1.png");
+	if (!m_HasDestPosReached)
+	{
+		return;
+	}
+
+	if (m_TexturePaths.size() > 1)
+	{
+		m_pGameObject->GetComponent<C_Render>()->SetTexture(m_TexturePaths[1]);
+	}
+	else
+	{
+		std::cout << "C_QBertMovement::MoveBottomLeft() > Couldn't set the right texture" << std::endl;
+		return;
+	}
 
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex += currentRow + 1;
+	CheckValidTile(currentRow);
 
-	MoveToTile();
+	m_HasDestPosReached = false;
+	PlayJumpSound();
 }
 
 void dae::C_QBertMovement::MoveTopRight()
@@ -45,12 +112,27 @@ void dae::C_QBertMovement::MoveTopRight()
 		return;
 	}
 
-	m_pGameObject->GetComponent<C_Render>()->SetTexture("qbert_2.png");
+	if (!m_HasDestPosReached)
+	{
+		return;
+	}
+
+	if (m_TexturePaths.size() > 2)
+	{
+		m_pGameObject->GetComponent<C_Render>()->SetTexture(m_TexturePaths[2]);
+	}
+	else
+	{
+		std::cout << "C_QBertMovement::MoveBottomLeft() > Couldn't set the right texture" << std::endl;
+		return;
+	}
 
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex -= currentRow;
+	CheckValidTile(currentRow);
 
-	MoveToTile();
+	m_HasDestPosReached = false;
+	PlayJumpSound();
 }
 
 void dae::C_QBertMovement::MoveBottomRight()
@@ -61,12 +143,27 @@ void dae::C_QBertMovement::MoveBottomRight()
 		return;
 	}
 
-	m_pGameObject->GetComponent<C_Render>()->SetTexture("qbert_0.png");
+	if (!m_HasDestPosReached)
+	{
+		return;
+	}
+
+	if (m_TexturePaths.size() > 0)
+	{
+		m_pGameObject->GetComponent<C_Render>()->SetTexture(m_TexturePaths[0]);
+	}
+	else
+	{
+		std::cout << "C_QBertMovement::MoveBottomLeft() > Couldn't set the right texture" << std::endl;
+		return;
+	}
 
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex += currentRow + 2;
+	CheckValidTile(currentRow);
 
-	MoveToTile();
+	m_HasDestPosReached = false;
+	PlayJumpSound();
 }
 
 void dae::C_QBertMovement::MoveTopLeft()
@@ -77,30 +174,156 @@ void dae::C_QBertMovement::MoveTopLeft()
 		return;
 	}
 
-	m_pGameObject->GetComponent<C_Render>()->SetTexture("qbert_3.png");
+	if (!m_HasDestPosReached)
+	{
+		return;
+	}
+
+	if (m_TexturePaths.size() > 3)
+	{
+		m_pGameObject->GetComponent<C_Render>()->SetTexture(m_TexturePaths[3]);
+	}
+	else
+	{
+		std::cout << "C_QBertMovement::MoveBottomLeft() > Couldn't set the right texture" << std::endl;
+		return;
+	}
 
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex -= currentRow + 1;
+	CheckValidTile(currentRow);
 
-	MoveToTile();
+	PlayJumpSound();
 }
 
-int dae::C_QBertMovement::CalculateCurrentRow()
+void dae::C_QBertMovement::MoveLeft()
+{
+	if (!m_pTileMap)
+	{
+		std::cout << "C_QBertMovement::MoveLeft() > m_pTileMap is a nullptr, set the tile map first" << std::endl;
+		return;
+	}
+
+	if (!m_HasDestPosReached)
+	{
+		return;
+	}
+
+	const int currentRow{ CalculateCurrentRow() };
+	m_CurrentTileIndex -= 1;
+	if (CalculateCurrentRow() != currentRow)
+	{
+		m_pSubject->Notify(m_pGameObject, "WalkOutMap");
+	}
+	else
+	{
+		m_HasDestPosReached = false;
+	}
+
+	if (m_TexturePaths.size() > 0)
+	{
+		m_pGameObject->GetComponent<C_Render>()->SetTexture(m_TexturePaths[0]);
+	}
+	else
+	{
+		std::cout << "C_QBertMovement::MoveLeft() > Couldn't set the right texture" << std::endl;
+		return;
+	}
+
+	PlayJumpSound();
+}
+
+void dae::C_QBertMovement::MoveRight()
+{
+	if (!m_pTileMap)
+	{
+		std::cout << "C_QBertMovement::MoveLeft() > m_pTileMap is a nullptr, set the tile map first" << std::endl;
+		return;
+	}
+
+	if (!m_HasDestPosReached)
+	{
+		return;
+	}
+
+	const int currentRow{ CalculateCurrentRow() };
+	m_CurrentTileIndex += 1;
+	if (CalculateCurrentRow() != currentRow)
+	{
+		m_pSubject->Notify(m_pGameObject, "WalkOutMap");
+	}
+	else
+	{
+		m_HasDestPosReached = false;
+	}
+
+	if (m_TexturePaths.size() > 0)
+	{
+		m_pGameObject->GetComponent<C_Render>()->SetTexture(m_TexturePaths[0]);
+	}
+	else
+	{
+		std::cout << "C_QBertMovement::MoveRight() > Couldn't set the right texture" << std::endl;
+		return;
+	}
+
+	PlayJumpSound();
+}
+
+int dae::C_QBertMovement::CalculateCurrentRow() const
 {
 	return int((-1 + sqrt(1 + 8 * m_CurrentTileIndex)) / 2);
+}
+
+void dae::C_QBertMovement::CheckValidTile(int previousRow)
+{
+	// Check if new m_CurrentTileIndex is valid
+	const int currentRow{ CalculateCurrentRow() };
+	int rowDifference{ currentRow - previousRow };
+	if (((rowDifference != 1) && (rowDifference != -1)) 
+		|| (m_CurrentTileIndex < 0) || (m_CurrentTileIndex >= m_pTileMap->GetChildren().size()))
+	{
+		m_pSubject->Notify(m_pGameObject, "WalkOutMap");
+	}
+	else
+	{
+		switch (m_TileChange)
+		{
+		case dae::C_QBertMovement::TileChange::eUpdate:
+			m_pSubject->Notify(m_pGameObject, "UpdateTile");
+			break;
+		case dae::C_QBertMovement::TileChange::eRevert:
+			m_pSubject->Notify(m_pGameObject, "RevertTile");
+			break;
+		}
+		m_HasDestPosReached = false;
+	}
 }
 
 void dae::C_QBertMovement::MoveToTile()
 {
 	auto pTiles{ m_pTileMap->GetChildren() };
-	// TODO: Check if new m_CurrentTileIndex is valid
 
-	auto pos = pTiles[m_CurrentTileIndex]->GetTransform()->GetPosition();
-	pos.x += m_TileSize / 4.f;
-	pos.y -= m_TileSize / 4.f;
-	m_pTransform->SetPosition(pos);
+	auto currentPos = m_pTransform->GetPosition();
 
-	PlayJumpSound();
+	auto destPos = pTiles[m_CurrentTileIndex]->GetTransform()->GetPosition();
+	destPos.x += m_TileSize / 4.f;
+	destPos.y -= m_TileSize / 4.f;
+
+	if (glm::distance(currentPos, destPos) < 1.f)
+	{
+		currentPos = destPos;
+		m_HasDestPosReached = true;
+	}
+	else
+	{
+		glm::vec3 moveDirection{ destPos - currentPos };
+		moveDirection.z = 0;
+		moveDirection = glm::normalize(moveDirection);
+		currentPos += moveDirection * m_MoveSpeed * SmTime::GetInstance().GetDeltaTime();
+	}
+
+	m_pTransform->SetPosition(currentPos);
 }
 
 void dae::C_QBertMovement::PlayJumpSound() const
@@ -111,4 +334,14 @@ void dae::C_QBertMovement::PlayJumpSound() const
 int dae::C_QBertMovement::GetTileSize() const
 {
 	return m_TileSize;
+}
+
+dae::Subject* dae::C_QBertMovement::GetSubject() const
+{
+	return m_pSubject;
+}
+
+int dae::C_QBertMovement::GetCurrentTileIndex() const
+{
+	return m_CurrentTileIndex;
 }

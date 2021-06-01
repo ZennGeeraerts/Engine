@@ -18,10 +18,7 @@ dae::PlayerUI::PlayerUI(const glm::vec2& pos, const std::vector<Subject*>& pSubj
 	, m_RemainingLives{ 0 }
 	, m_Score{ 0 }
 {
-	for (auto pSubject : pSubjects)
-	{
-		pSubject->AddObserver(this);
-	}
+	
 }
 
 void dae::PlayerUI::Render()

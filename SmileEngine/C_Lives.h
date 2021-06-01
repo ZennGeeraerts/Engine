@@ -12,9 +12,11 @@ namespace dae
         void SetLives(int lives);
         int GetLives() const;
         void RemoveLive();
+        Subject* GetSubject() const;
 
     private:
         int m_Lives;
+        Subject* m_pSubject;
     };
 }
 

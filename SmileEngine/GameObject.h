@@ -4,7 +4,7 @@ namespace dae
 {
 	class Component;
 	class C_Transform;
-	class Subject;
+	class Scene;
 
 	class GameObject final
 	{
@@ -58,6 +58,8 @@ namespace dae
 			return pNewComponent;
 		}
 
+		void SetName(const std::string& name);
+		void SetScene(Scene* pScene);
 		void AddChild(GameObject* pChild);
 		GameObject* GetChildByName(const std::string& name) const;
 		GameObject* GetChildByIndex(int index) const;
@@ -66,8 +68,12 @@ namespace dae
 
 		C_Transform* GetTransform() const;
 		const std::string& GetName() const;
+		Scene* GetScene() const;
 
 		static int GetInstanceCount();
+
+	protected:
+		Scene* m_pScene;
 
 	private:
 		std::vector<Component*> m_pComponents;

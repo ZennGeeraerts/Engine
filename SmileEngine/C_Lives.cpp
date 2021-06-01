@@ -5,6 +5,7 @@
 dae::C_Lives::C_Lives(GameObject* pGameObject)
 	: Component(pGameObject)
 	, m_Lives{ 1 }
+	, m_pSubject{ new Subject{} }
 {
 }
 
@@ -24,4 +25,14 @@ void dae::C_Lives::RemoveLive()
 	{
 		--m_Lives;
 	}
+
+	if (m_Lives == 0)
+	{
+		m_pSubject->Notify(m_pGameObject, "GameOver");
+	}
+}
+
+dae::Subject* dae::C_Lives::GetSubject() const
+{
+	return m_pSubject;
 }

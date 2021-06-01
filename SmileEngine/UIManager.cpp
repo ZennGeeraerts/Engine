@@ -37,5 +37,8 @@ void dae::UIManager::RemoveUILayer(const std::string& name)
 		}
 	);
 
-	m_pUILayers.erase(it);
+	if (it != m_pUILayers.end())
+	{
+		m_pUILayers.erase(it);
+	}
 }

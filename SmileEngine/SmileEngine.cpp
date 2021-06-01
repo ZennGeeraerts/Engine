@@ -10,20 +10,17 @@
 #include "Scene.h"
 #include "SmTime.h"
 
+// Scenes
+#include "MainMenu.h"
+#include "Level1.h"
+
 // Components
-#include "C_Text.h"
-#include "C_Render.h"
-#include "C_Transform.h"
-#include "C_FPSCounter.h"
+
 
 // UI
-#include "UIManager.h"
-#include "GameModeMenu.h"
-#include "ControlsMenu.h"
 
 // Prefabs
-#include "Player.h"
-#include "TileMap.h"
+
 
 // Input
 #include "InputManager.h"
@@ -47,23 +44,23 @@ void dae::SmileEngine::Initialize()
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
-	m_WindowWidth = 640;
-	m_WindowHeight = 480;
+	m_GameSettings.m_WindowWidth = 640;
+	m_GameSettings.m_WindowHeight = 480;
 
-	m_pWindow = SDL_CreateWindow(
+	m_GameSettings.m_pWindow = SDL_CreateWindow(
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		m_WindowWidth,
-		m_WindowHeight,
+		m_GameSettings.m_WindowWidth,
+		m_GameSettings.m_WindowHeight,
 		SDL_WINDOW_OPENGL
 	);
-	if (m_pWindow == nullptr) 
+	if (m_GameSettings.m_pWindow == nullptr)
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
 
-	Renderer::GetInstance().Init(m_pWindow);
+	Renderer::GetInstance().Init(m_GameSettings.m_pWindow);
 
 	m_pSoundSystem = new SDLSoundSystem{};
 
@@ -81,63 +78,40 @@ void dae::SmileEngine::Initialize()
  */
 void dae::SmileEngine::LoadGame() const
 {
-	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 	//auto& uiManager = UIManager::GetInstance();
 	auto& inputManager = InputManager::GetInstance();
 
 	ServiceLocator::RegisterSoundSystem(m_pSoundSystem);
 
 	// Input
-	inputManager.AddInputAction(SDL_SCANCODE_A, new Quit{ InputManager::InputKeyAction::eDown });
+	inputManager.AddInputAction(SDL_SCANCODE_ESCAPE, new Quit{ InputManager::InputKeyAction::eDown });
 
 	// UI
 	//uiManager.AddUILayer(new GameModeMenu{ glm::vec2{ 200.f, 0.0f }, m_pWindow });
 	//uiManager.AddUILayer(new ControlsMenu{ glm::vec2{ 200.f, 150.f }, m_pWindow });
+	CreateScenes();
+}
 
-	auto pGameObject = std::make_shared<GameObject>();
-	auto pRenderer = pGameObject->AddComponent<C_Render>();
-	pRenderer->SetTexture("background.jpg");
-	scene.Add(pGameObject);
+void dae::SmileEngine::CreateScenes() const
+{
+	auto& sceneManager = SceneManager::GetInstance();
 
-	pGameObject = std::make_shared<GameObject>();
-	pRenderer = pGameObject->AddComponent<C_Render>();
-	pRenderer->SetTexture("logo.png");
-	pGameObject->GetComponent<C_Transform>()->SetPosition(216, 180, 0);
-	scene.Add(pGameObject);
+	std::shared_ptr<MainMenu> pMainMenu = std::make_shared<MainMenu>(m_GameSettings);
+	sceneManager.AddScene(pMainMenu);
+	pMainMenu->CreateScene();
 
-	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	pGameObject = std::make_shared<GameObject>();
-	pGameObject->AddComponent<C_Render>();
-	auto pText = pGameObject->AddComponent<C_Text>();
-	pText->SetText("Programming 4 assignment");
-	pText->SetFont(font);
-	pGameObject->GetComponent<C_Transform>()->SetPosition(80, 20, 0);
-	scene.Add(pGameObject);
+	std::shared_ptr<Level1> pLevel1 = std::make_shared<Level1>(m_GameSettings);
+	sceneManager.AddScene(pLevel1);
+	pLevel1->CreateScene();
 
-	pGameObject = std::make_shared<GameObject>();
-	pGameObject->AddComponent<C_Render>();
-	pText = pGameObject->AddComponent<C_Text>();
-	pText->SetText("FPS");
-	pText->SetFont(font);
-	pGameObject->AddComponent<C_FPSCounter>();
-	pGameObject->GetComponent<C_Transform>()->SetPosition(10, 10, 0);
-	scene.Add(pGameObject);
-
-	std::shared_ptr<TileMap> pTileMap = std::make_shared<TileMap>(TileMap{ m_WindowWidth, m_WindowHeight });
-	scene.Add(pTileMap->CreatePrefab());
-
-	std::shared_ptr<Player> pPlayer = std::make_shared<Player>(Player{ glm::vec2{ 0.0f, 0.0f }, m_pWindow, XBoxController::ControllerButton::eButtonA, XBoxController::ControllerButton::eButtonB });
-	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });
-
-	/*pPlayer = std::make_shared<Player>(Player{ glm::vec2{ 0.0f, 150.0f }, m_pWindow, XBoxController::ControllerButton::eButtonDown, XBoxController::ControllerButton::eButtonRight });
-	scene.Add(std::shared_ptr<GameObject>{ pPlayer->CreatePrefab() });*/
+	sceneManager.SetScene(0);
 }
 
 void dae::SmileEngine::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
-	SDL_DestroyWindow(m_pWindow);
-	m_pWindow = nullptr;
+	SDL_DestroyWindow(m_GameSettings.m_pWindow);
+	m_GameSettings.m_pWindow = nullptr;
 	SDL_Quit();
 
 	delete m_pSoundSystem;

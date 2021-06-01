@@ -9,14 +9,10 @@ namespace dae
 		void ProcessInput();
 		bool HandleInput();
 
-		bool IsPressed();
-		bool IsDown(SDL_Scancode button);
-		bool IsReleased();
+		bool IsPressed(SDL_Scancode button) const;
+		bool IsDown(SDL_Scancode button) const;
 
 	private:
-		/*bool OnKeyDown(SDL_Keycode keyCode);
-		bool OnKeyReleased(SDL_Keycode keyCode);*/
-
 		const Uint8* m_KeyboardStates{ nullptr };
 	};
 }

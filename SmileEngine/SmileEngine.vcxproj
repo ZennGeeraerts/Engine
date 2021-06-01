@@ -505,19 +505,28 @@ SDL2_ttf.lib
     <ClInclude Include="..\3rdParty\imgui-master\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-master\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h" />
+    <ClInclude Include="Coily.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ControlsMenu.h" />
+    <ClInclude Include="C_CoilyController.h" />
+    <ClInclude Include="C_GameManager.h" />
     <ClInclude Include="C_Health.h" />
     <ClInclude Include="C_Lives.h" />
     <ClInclude Include="C_QBertMovement.h" />
     <ClInclude Include="C_Score.h" />
+    <ClInclude Include="C_SlickAndSlamController.h" />
+    <ClInclude Include="C_Tile.h" />
+    <ClInclude Include="C_UggController.h" />
+    <ClInclude Include="C_WrongwayController.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="C_FPSCounter.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputCommands.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="LuaFunctions.h" />
     <ClInclude Include="LuaVM.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NPCManager.h" />
     <ClInclude Include="NullSoundSystem.h" />
     <ClInclude Include="Player.h" />
@@ -620,12 +629,19 @@ SDL2_ttf.lib
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Coily.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ControlsMenu.cpp" />
+    <ClCompile Include="C_CoilyController.cpp" />
+    <ClCompile Include="C_GameManager.cpp" />
     <ClCompile Include="C_Health.cpp" />
     <ClCompile Include="C_Lives.cpp" />
     <ClCompile Include="C_QBertMovement.cpp" />
     <ClCompile Include="C_Score.cpp" />
+    <ClCompile Include="C_SlickAndSlamController.cpp" />
+    <ClCompile Include="C_Tile.cpp" />
+    <ClCompile Include="C_UggController.cpp" />
+    <ClCompile Include="C_WrongwayController.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="C_FPSCounter.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -640,9 +656,11 @@ SDL2_ttf.lib
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="LuaFunctions.cpp" />
     <ClCompile Include="LuaVM.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="NPCManager.cpp" />
     <ClCompile Include="NullSoundSystem.cpp" />
     <ClCompile Include="Player.cpp" />

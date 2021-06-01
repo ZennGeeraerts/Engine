@@ -87,7 +87,7 @@ bool dae::InputManager::IsDown(XBoxController::ControllerButton button) const
 	return m_Controller.IsDown(button);
 }
 
-bool dae::InputManager::IsDown(SDL_Scancode button)
+bool dae::InputManager::IsDown(SDL_Scancode button) const
 {
 	return m_InputSystem.IsDown(button);
 }

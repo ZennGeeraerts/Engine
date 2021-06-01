@@ -23,7 +23,7 @@ namespace dae
 
 		bool IsPressed(XBoxController::ControllerButton button) const;
 		bool IsDown(XBoxController::ControllerButton button) const;
-		bool IsDown(SDL_Scancode button);
+		bool IsDown(SDL_Scancode button) const;
 		bool IsReleased(XBoxController::ControllerButton button) const;
 
 		void AddInputAction(XBoxController::ControllerButton button, InputCommand* pCommand);

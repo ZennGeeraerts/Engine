@@ -10,7 +10,8 @@ dae::C_Health::C_Health(GameObject* pGameObject)
 	, m_CurrentHealth{ 1 }
 	, m_IsDead{ false }
 	, m_IsInitialized{ false }
-	, m_pSubject{ new Subject{} }
+	, m_pUISubject{ new Subject{} }
+	, m_pGameManagerSubject{ new Subject{} }
 	, m_pLives{ nullptr }
 {
 	m_pLives = pGameObject->GetComponent<C_Lives>();
@@ -24,8 +25,8 @@ void dae::C_Health::Update()
 {
 	if (!m_IsInitialized)
 	{
-		m_pSubject->Notify(m_pGameObject, "HealthCreated");
-		m_pSubject->Notify(m_pGameObject, "LivesUpdated");
+		m_pUISubject->Notify(m_pGameObject, "HealthCreated");
+		m_pUISubject->Notify(m_pGameObject, "LivesUpdated");
 		m_IsInitialized = true;
 	}
 }
@@ -38,7 +39,7 @@ void dae::C_Health::SetHealth(int health)
 
 dae::C_Health::~C_Health()
 {
-	delete m_pSubject;
+	delete m_pUISubject;
 }
 
 void dae::C_Health::TakeDamage(int damage)
@@ -48,7 +49,8 @@ void dae::C_Health::TakeDamage(int damage)
 	if (m_CurrentHealth <= 0)
 	{
 		m_pLives->RemoveLive();
-		m_pSubject->Notify(m_pGameObject, "PlayerDied");
+		m_pUISubject->Notify(m_pGameObject, "PlayerDied");
+		m_pGameManagerSubject->Notify(m_pGameObject, "PlayerDied");
 
 		if (m_pLives->GetLives() > 0)
 		{
@@ -67,7 +69,12 @@ int dae::C_Health::GetHealth() const
 	return m_CurrentHealth;
 }
 
-dae::Subject* dae::C_Health::GetSubject() const
+dae::Subject* dae::C_Health::GetUISubject() const
 {
-	return m_pSubject;
+	return m_pUISubject;
+}
+
+dae::Subject* dae::C_Health::GetGameManagerSubject() const
+{
+	return m_pGameManagerSubject;
 }

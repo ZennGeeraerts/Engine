@@ -4,6 +4,7 @@
 
 #include "C_Transform.h"
 #include "C_Render.h"
+#include "C_Tile.h"
 
 dae::Tile::Tile(const glm::vec2& pos)
 	: Prefab("Tile")
@@ -14,7 +15,7 @@ dae::Tile::Tile(const glm::vec2& pos)
 
 std::shared_ptr<dae::GameObject> dae::Tile::CreatePrefab()
 {
-	C_Render* pRender = m_pGameObject->AddComponent<C_Render>();
-	pRender->SetTexture("tile_blue.png");
+	m_pGameObject->AddComponent<C_Render>();
+	m_pGameObject->AddComponent<C_Tile>();
 	return m_pGameObject;
 }

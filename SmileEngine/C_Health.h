@@ -22,7 +22,8 @@ namespace dae
 		void Kill();
 
 		int GetHealth() const;
-		Subject* GetSubject() const;
+		Subject* GetUISubject() const;
+		Subject* GetGameManagerSubject() const;
 
 		C_Health& operator=(const C_Health&) = delete;
 		C_Health& operator=(C_Health&&) noexcept = delete;
@@ -33,7 +34,8 @@ namespace dae
 		bool m_IsDead;
 		bool m_IsInitialized;
 
-		Subject* m_pSubject;
+		Subject* m_pUISubject;
+		Subject* m_pGameManagerSubject;
 		C_Lives* m_pLives;
 	};
 }

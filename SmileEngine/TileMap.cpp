@@ -32,5 +32,6 @@ std::shared_ptr<dae::GameObject> dae::TileMap::CreatePrefab()
 		tilePos = startRowPos;
 	}
 
+	m_pGameObject->SetName("TileMap0");
 	return m_pGameObject;
 }

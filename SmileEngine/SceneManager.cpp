@@ -4,41 +4,88 @@
 
 void dae::SceneManager::Update()
 {
-	for(auto& scene : m_Scenes)
+	if (!m_CurrentScene.get())
 	{
-		scene->Update();
+		return;
 	}
+	else if (m_CurrentScene->GetIsMarkedForDelete())
+	{
+		RemoveScene(m_CurrentScene);
+		m_CurrentScene = nullptr;
+		return;
+	}
+	else if (m_CurrentScene->GetIsMarkedforRestart())
+	{
+		m_CurrentScene->Restart();
+	}
+
+	m_CurrentScene->Update();
 }
 
 void dae::SceneManager::FixedUpdate()
 {
-	for (auto& scene : m_Scenes)
+	if (!m_CurrentScene.get())
 	{
-		scene->FixedUpdate();
+		return;
 	}
+
+	m_CurrentScene->FixedUpdate();
 }
 
 void dae::SceneManager::LateUpdate()
 {
-	for (auto& scene : m_Scenes)
+	if (!m_CurrentScene.get())
 	{
-		scene->LateUpdate();
+		return;
 	}
+
+	m_CurrentScene->LateUpdate();
 }
 
 void dae::SceneManager::Render()
 {
-	for (const auto& scene : m_Scenes)
+	if (!m_CurrentScene)
 	{
-		scene->Render();
+		return;
+	}
+
+	m_CurrentScene->Render();
+}
+
+dae::Scene& dae::SceneManager::AddScene(std::shared_ptr<Scene> pScene)
+{
+	m_Scenes.push_back(pScene);
+	m_CurrentScene = pScene;
+	return *pScene;
+}
+
+void dae::SceneManager::RemoveScene(int index)
+{
+	if ((index >= 0) && (index < m_Scenes.size()))
+	{
+		m_Scenes.erase(m_Scenes.begin() + index);
+	}
+	else
+	{
+		std::cout << "SceneManager::RemoveScene(int index) > index out of range" << std::endl;
 	}
 }
 
-dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
+void dae::SceneManager::RemoveScene(std::shared_ptr<Scene> pScene)
 {
-	const auto scene = std::shared_ptr<Scene>(new Scene(name));
-	m_Scenes.push_back(scene);
-	return *scene;
+	m_Scenes.erase(std::find(m_Scenes.begin(), m_Scenes.end(), pScene));
+}
+
+void dae::SceneManager::SetScene(int index)
+{
+	if ((index >= 0) && (index < m_Scenes.size()))
+	{
+		m_CurrentScene = m_Scenes[index];
+	}
+	else
+	{
+		std::cout << "SceneManager::SetScene(int index) > index out of range" << std::endl;
+	}
 }
 
 std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int index) const
@@ -50,4 +97,9 @@ std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int index) const
 
 	std::cout << "SceneManager::GetScene(int index) > index out of range, returned nullptr" << std::endl;
 	return nullptr;
+}
+
+std::shared_ptr<dae::Scene> dae::SceneManager::GetCurrentScene() const
+{
+	return m_CurrentScene;
 }

@@ -1,7 +1,6 @@
 #include "SmileEnginePCH.h"
 #include "GameObject.h"
 #include "C_Transform.h"
-#include "Subject.h"
 
 int dae::GameObject::m_InstanceCount{ 0 };
 
@@ -17,6 +16,7 @@ dae::GameObject::GameObject(const std::string& name)
 	, m_Name{ name }
 	, m_pTransform{ nullptr }
 	, m_IsDead{ false }
+	, m_pScene{ nullptr }
 {
 	m_pTransform = AddComponent<C_Transform>();
 
@@ -88,6 +88,16 @@ void dae::GameObject::Render() const
 	}
 }
 
+void dae::GameObject::SetName(const std::string& name)
+{
+	m_Name = name;
+}
+
+void dae::GameObject::SetScene(Scene* pScene)
+{
+	m_pScene = pScene;
+}
+
 void dae::GameObject::AddChild(GameObject* pChild)
 {
 	m_pChildren.push_back(pChild);
@@ -134,6 +144,11 @@ dae::C_Transform* dae::GameObject::GetTransform() const
 const std::string& dae::GameObject::GetName() const
 {
 	return m_Name;
+}
+
+dae::Scene* dae::GameObject::GetScene() const
+{
+	return m_pScene;
 }
 
 int dae::GameObject::GetInstanceCount()
