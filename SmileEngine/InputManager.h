@@ -28,6 +28,8 @@ namespace dae
 
 		void AddInputAction(XBoxController::ControllerButton button, InputCommand* pCommand);
 		void AddInputAction(SDL_Scancode button, InputCommand* pCommand);
+		void RemoveInputAction(XBoxController::ControllerButton button);
+		void RemoveInputAction(SDL_Scancode button);
 		
 	private:
 		bool HandleInput();

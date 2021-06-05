@@ -38,9 +38,22 @@ void Scene::Add(const std::shared_ptr<GameObject>& pObject)
 
 void Scene::Update()
 {
-	for(auto& pObject : m_pGameObjects)
+	std::vector<std::shared_ptr<GameObject>> pToBeDeleted{};
+
+	for (auto& pObject : m_pGameObjects)
 	{
 		pObject->Update();
+
+		if (pObject->GetIsMarkedForDelete())
+		{
+			pToBeDeleted.push_back(pObject);
+		}
+	}
+
+	// Delete game objects
+	for (auto& pObject : pToBeDeleted)
+	{
+		m_pGameObjects.erase(std::remove(m_pGameObjects.begin(), m_pGameObjects.end(), pObject));
 	}
 }
 
@@ -85,6 +98,31 @@ GameObject* Scene::GetGameObjectByName(const std::string& name) const
 	return nullptr;
 }
 
+void Scene::GetGameObjectsWithTag(std::vector<GameObject*>& pGameObjects, const std::string& tag)
+{
+	pGameObjects.clear();
+
+	auto it = m_pGameObjects.begin();
+	while (true)
+	{
+		it = std::find_if(it, m_pGameObjects.end(),
+			[tag](std::shared_ptr<dae::GameObject> pGameObject)
+			{
+				return pGameObject->GetTag() == tag;
+			});
+
+		if (it != m_pGameObjects.end())
+		{
+			pGameObjects.push_back((*it).get());
+			++it;
+		}
+		else
+		{
+			break;
+		}
+	}
+}
+
 void Scene::MarkForDelete()
 {
 	m_IsMarkedForDelete = true;
@@ -111,3 +149,6 @@ bool Scene::GetIsMarkedforRestart() const
 {
 	return m_IsMarkedForRestart;
 }
+
+void Scene::OnSceneEnd()
+{}

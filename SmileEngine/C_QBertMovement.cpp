@@ -6,6 +6,7 @@
 #include "ServiceLocator.h"
 #include "SmTime.h"
 #include "Subject.h"
+#include "C_Teleport.h"
 
 dae::C_QBertMovement::C_QBertMovement(GameObject* pGameObject)
 	: Component(pGameObject)
@@ -17,6 +18,7 @@ dae::C_QBertMovement::C_QBertMovement(GameObject* pGameObject)
 	, m_pSubject{ new Subject{} }
 	, m_StartTile{ 0 }
 	, m_TileChange{ TileChange::eNone }
+	, m_pTeleports{}
 {
 	
 }
@@ -40,6 +42,11 @@ void dae::C_QBertMovement::SetStartTile(int tileIndex)
 void dae::C_QBertMovement::SetTileChange(TileChange tileChange)
 {
 	m_TileChange = tileChange;
+}
+
+void dae::C_QBertMovement::SetTeleports(const std::vector<C_Teleport*> pTeleports)
+{
+	m_pTeleports = pTeleports;
 }
 
 void dae::C_QBertMovement::Update()
@@ -98,10 +105,8 @@ void dae::C_QBertMovement::MoveBottomLeft()
 
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex += currentRow + 1;
-	CheckValidTile(currentRow);
-
-	m_HasDestPosReached = false;
-	PlayJumpSound();
+	
+	Move(currentRow);
 }
 
 void dae::C_QBertMovement::MoveTopRight()
@@ -127,12 +132,15 @@ void dae::C_QBertMovement::MoveTopRight()
 		return;
 	}
 
+	if (CheckTeleport(MovementDirection::eTopRight))
+	{
+		return;
+	}
+
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex -= currentRow;
-	CheckValidTile(currentRow);
-
-	m_HasDestPosReached = false;
-	PlayJumpSound();
+	
+	Move(currentRow);
 }
 
 void dae::C_QBertMovement::MoveBottomRight()
@@ -160,10 +168,8 @@ void dae::C_QBertMovement::MoveBottomRight()
 
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex += currentRow + 2;
-	CheckValidTile(currentRow);
 
-	m_HasDestPosReached = false;
-	PlayJumpSound();
+	Move(currentRow);
 }
 
 void dae::C_QBertMovement::MoveTopLeft()
@@ -189,11 +195,40 @@ void dae::C_QBertMovement::MoveTopLeft()
 		return;
 	}
 
+	if (CheckTeleport(MovementDirection::eTopLeft))
+	{
+		return;
+	}
+
 	const int currentRow{ CalculateCurrentRow() };
 	m_CurrentTileIndex -= currentRow + 1;
-	CheckValidTile(currentRow);
+	
+	Move(currentRow);
+}
 
+void dae::C_QBertMovement::Move(int currentRow)
+{
+	CheckValidTile(currentRow);
+	m_HasDestPosReached = false;
 	PlayJumpSound();
+}
+
+bool dae::C_QBertMovement::CheckTeleport(MovementDirection movementDir)
+{
+	for (auto pTeleport : m_pTeleports)
+	{
+		if ((pTeleport->GetMovementDirection() == movementDir) && (pTeleport->GetConnectedTile() == m_CurrentTileIndex))
+		{
+			auto destPos = pTeleport->GetGameObject()->GetTransform()->GetPosition();
+			m_pGameObject->GetTransform()->SetPosition(destPos);
+			m_CurrentTileIndex = m_StartTile;
+			m_HasDestPosReached = false;
+			pTeleport->Teleport(m_pGameObject);
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void dae::C_QBertMovement::MoveLeft()
@@ -344,4 +379,9 @@ dae::Subject* dae::C_QBertMovement::GetSubject() const
 int dae::C_QBertMovement::GetCurrentTileIndex() const
 {
 	return m_CurrentTileIndex;
+}
+
+bool dae::C_QBertMovement::GetHasDestPosReached() const
+{
+	return m_HasDestPosReached;
 }

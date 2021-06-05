@@ -1,6 +1,7 @@
 #include "SmileEnginePCH.h"
 #include "GameModeMenu.h"
 #include "SceneManager.h"
+#include "Scene.h"
 #include "UIManager.h"
 
 #include "imgui.h"
@@ -14,6 +15,7 @@ dae::GameModeMenu::GameModeMenu(const glm::vec2& pos)
 
 void dae::GameModeMenu::Render()
 {
+	auto& sceneManager = SceneManager::GetInstance();
 	bool isClosable{ false };
 	ImGui::Begin("Settings", &isClosable);
 
@@ -21,10 +23,16 @@ void dae::GameModeMenu::Render()
 	ImGui::SetWindowPos(ImVec2{ m_Position.x, m_Position.y });
 	if (ImGui::Button("single player"))
 	{
-		SceneManager::GetInstance().SetScene(1);
+		sceneManager.SetScene(1);
+		sceneManager.GetScene(1)->CreateScene();
 		UIManager::GetInstance().RemoveUILayer("GameModeScene");
 	}
-	ImGui::Button("co-op");
+	if (ImGui::Button("co-op"))
+	{
+		sceneManager.SetScene(4);
+		sceneManager.GetScene(4)->CreateScene();
+		UIManager::GetInstance().RemoveUILayer("GameModeScene");
+	}
 	ImGui::Button("versus");
 
 	ImGui::End();

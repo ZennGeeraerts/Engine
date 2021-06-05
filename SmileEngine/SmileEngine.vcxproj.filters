@@ -9,9 +9,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\imgui">
-      <UniqueIdentifier>{c5b3b1d7-8e1d-41bc-b535-f2e4068c36fb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{fd3ddb6f-e012-456c-b782-3a157372dff0}</UniqueIdentifier>
     </Filter>
@@ -39,12 +36,6 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{ec04f782-e378-4225-b954-190eae7b85be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\UI\UILayers">
-      <UniqueIdentifier>{b014b0c4-7218-48d1-b74f-923418346b1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\UI\UILayers\Base">
-      <UniqueIdentifier>{4cb4b408-af83-4d64-bf05-fc6961e148cf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GameObjects\Prefabs">
       <UniqueIdentifier>{f99e97c0-fb77-463c-bead-60c76740fb6f}</UniqueIdentifier>
     </Filter>
@@ -56,6 +47,9 @@
     </Filter>
     <Filter Include="Source Files\Lua">
       <UniqueIdentifier>{aa854eef-40c6-499f-828a-5c4465307d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\imgui">
+      <UniqueIdentifier>{8177de02-0bed-4805-a7dd-d18a205b1727}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,30 +89,6 @@
     <ClInclude Include="C_Transform.h">
       <Filter>Source Files\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\imconfig.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\imgui.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\imgui_internal.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\imstb_rectpack.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\imstb_textedit.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdParty\imgui-master\backends\imgui_impl_sdl.h">
-      <Filter>Source Files\imgui</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
@@ -137,35 +107,14 @@
     <ClInclude Include="Subject.h">
       <Filter>Source Files\Observer</Filter>
     </ClInclude>
-    <ClInclude Include="C_Health.h">
-      <Filter>Source Files\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>Source Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="UILayer.h">
-      <Filter>Source Files\UI\UILayers\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="GameModeMenu.h">
-      <Filter>Source Files\UI\UILayers</Filter>
-    </ClInclude>
     <ClInclude Include="Prefab.h">
       <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Lives.h">
-      <Filter>Source Files\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerUI.h">
-      <Filter>Source Files\UI\UILayers</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Score.h">
-      <Filter>Source Files\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlsMenu.h">
-      <Filter>Source Files\UI\UILayers</Filter>
     </ClInclude>
     <ClInclude Include="SmTime.h">
       <Filter>Source Files</Filter>
@@ -206,38 +155,38 @@
     <ClInclude Include="TileMap.h">
       <Filter>Source Files\GameObjects\Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="C_QBertMovement.h">
-      <Filter>Source Files\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="C_GameManager.h">
-      <Filter>Source Files\Component</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>Source Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Tile.h">
-      <Filter>Source Files\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Level1.h">
-      <Filter>Source Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Coily.h">
       <Filter>Source Files\GameObjects\Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="C_CoilyController.h">
-      <Filter>Source Files\Component</Filter>
+    <ClInclude Include="UILayer.h">
+      <Filter>Source Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="C_UggController.h">
-      <Filter>Source Files\Component</Filter>
+    <ClInclude Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.h">
+      <Filter>Source Files\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="C_WrongwayController.h">
-      <Filter>Source Files\Component</Filter>
+    <ClInclude Include="..\3rdParty\imgui-master\backends\imgui_impl_sdl.h">
+      <Filter>Source Files\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="C_SlickAndSlamController.h">
-      <Filter>Source Files\Component</Filter>
+    <ClInclude Include="..\3rdParty\imgui-master\imconfig.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imgui.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imgui_internal.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imstb_rectpack.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imstb_textedit.h">
+      <Filter>Source Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h">
+      <Filter>Source Files\imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -277,27 +226,6 @@
     <ClCompile Include="C_Transform.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-master\imgui.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-master\imgui_demo.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-master\imgui_draw.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-master\imgui_tables.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-master\imgui_widgets.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_sdl.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
@@ -316,35 +244,14 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Source Files\Observer</Filter>
     </ClCompile>
-    <ClCompile Include="C_Health.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="UILayer.cpp">
-      <Filter>Source Files\UI\UILayers\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="GameModeMenu.cpp">
-      <Filter>Source Files\UI\UILayers</Filter>
-    </ClCompile>
     <ClCompile Include="Prefab.cpp">
       <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Lives.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerUI.cpp">
-      <Filter>Source Files\UI\UILayers</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Score.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="ControlsMenu.cpp">
-      <Filter>Source Files\UI\UILayers</Filter>
     </ClCompile>
     <ClCompile Include="SmTime.cpp">
       <Filter>Source Files</Filter>
@@ -382,38 +289,35 @@
     <ClCompile Include="TileMap.cpp">
       <Filter>Source Files\GameObjects\Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="C_QBertMovement.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="C_GameManager.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Tile.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Level1.cpp">
-      <Filter>Source Files\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Coily.cpp">
       <Filter>Source Files\GameObjects\Prefabs</Filter>
     </ClCompile>
-    <ClCompile Include="C_CoilyController.cpp">
-      <Filter>Source Files\Component</Filter>
+    <ClCompile Include="UILayer.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="C_UggController.cpp">
-      <Filter>Source Files\Component</Filter>
+    <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.cpp">
+      <Filter>Source Files\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="C_WrongwayController.cpp">
-      <Filter>Source Files\Component</Filter>
+    <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_sdl.cpp">
+      <Filter>Source Files\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="C_SlickAndSlamController.cpp">
-      <Filter>Source Files\Component</Filter>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_demo.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_draw.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_tables.cpp">
+      <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-master\imgui_widgets.cpp">
+      <Filter>Source Files\imgui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,6 +21,8 @@ namespace dae
 		void Cleanup();
 		SMILEENGINE_ENTRY void Run();
 
+		const GameSettings& GetGameSettings() const;
+
 	private:
 		void CreateScenes() const;
 

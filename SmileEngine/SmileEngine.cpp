@@ -11,16 +11,11 @@
 #include "SmTime.h"
 
 // Scenes
-#include "MainMenu.h"
-#include "Level1.h"
-
-// Components
-
-
-// UI
-
-// Prefabs
-
+//#include "MainMenu.h"
+//#include "Level1.h"
+//#include "Level2.h"
+//#include "Level3.h"
+//#include "CoopLevel1"
 
 // Input
 #include "InputManager.h"
@@ -71,6 +66,11 @@ void dae::SmileEngine::Initialize()
 	m_pLuaVM->RegisterFunction("dump", dae::dump);
 	m_pLuaVM->RegisterFunction("setHealth", dae::setHealth);
 	m_pLuaVM->ExecuteFile("../Data/NPC.lua");
+
+	// tell the resource manager where he can find the game data
+	ResourceManager::GetInstance().Init("../Data/");
+
+	LoadGame();
 }
 
 /**
@@ -89,12 +89,12 @@ void dae::SmileEngine::LoadGame() const
 	// UI
 	//uiManager.AddUILayer(new GameModeMenu{ glm::vec2{ 200.f, 0.0f }, m_pWindow });
 	//uiManager.AddUILayer(new ControlsMenu{ glm::vec2{ 200.f, 150.f }, m_pWindow });
-	CreateScenes();
+	//CreateScenes();
 }
 
 void dae::SmileEngine::CreateScenes() const
 {
-	auto& sceneManager = SceneManager::GetInstance();
+	/*auto& sceneManager = SceneManager::GetInstance();
 
 	std::shared_ptr<MainMenu> pMainMenu = std::make_shared<MainMenu>(m_GameSettings);
 	sceneManager.AddScene(pMainMenu);
@@ -102,9 +102,16 @@ void dae::SmileEngine::CreateScenes() const
 
 	std::shared_ptr<Level1> pLevel1 = std::make_shared<Level1>(m_GameSettings);
 	sceneManager.AddScene(pLevel1);
-	pLevel1->CreateScene();
 
-	sceneManager.SetScene(0);
+	std::shared_ptr<Level2> pLevel2 = std::make_shared<Level2>(m_GameSettings);
+	sceneManager.AddScene(pLevel2);
+
+	sceneManager.SetScene(0);*/
+}
+
+const dae::GameSettings& dae::SmileEngine::GetGameSettings() const
+{
+	return m_GameSettings;
 }
 
 void dae::SmileEngine::Cleanup()
@@ -120,13 +127,6 @@ void dae::SmileEngine::Cleanup()
 
 void dae::SmileEngine::Run()
 {
-	Initialize();
-
-	// tell the resource manager where he can find the game data
-	ResourceManager::GetInstance().Init("../Data/");
-
-	LoadGame();
-
 	{
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();

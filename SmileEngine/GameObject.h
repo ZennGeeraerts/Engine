@@ -60,15 +60,21 @@ namespace dae
 
 		void SetName(const std::string& name);
 		void SetScene(Scene* pScene);
+		void SetTag(const std::string& tag);
 		void AddChild(GameObject* pChild);
+		void MarkForDelete();
+		void SetEnabled(bool isEnabled);
+
 		GameObject* GetChildByName(const std::string& name) const;
 		GameObject* GetChildByIndex(int index) const;
 		const std::vector<GameObject*>& GetChildren() const;
-		//std::ostream& operator<<(std::ostream& os, const GameObject& dt);
 
 		C_Transform* GetTransform() const;
 		const std::string& GetName() const;
 		Scene* GetScene() const;
+		bool GetIsMarkedForDelete() const;
+		const std::string& GetTag() const;
+		bool GetIsEnabled() const;
 
 		static int GetInstanceCount();
 
@@ -80,7 +86,9 @@ namespace dae
 		std::vector<GameObject*> m_pChildren;
 		std::string m_Name;
 		C_Transform* m_pTransform;
-		bool m_IsDead;
+		bool m_IsMarkedForDelete;
+		std::string m_Tag;
+		bool m_IsEnabled;
 
 		static int m_InstanceCount;
 	};

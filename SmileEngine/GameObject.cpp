@@ -15,8 +15,10 @@ dae::GameObject::GameObject(const std::string& name)
 	, m_pChildren{}
 	, m_Name{ name }
 	, m_pTransform{ nullptr }
-	, m_IsDead{ false }
+	, m_IsMarkedForDelete{ false }
 	, m_pScene{ nullptr }
+	, m_Tag{ "" }
+	, m_IsEnabled{ true }
 {
 	m_pTransform = AddComponent<C_Transform>();
 
@@ -38,6 +40,11 @@ dae::GameObject::~GameObject()
 
 void dae::GameObject::Update()
 {
+	if (!m_IsEnabled)
+	{
+		return;
+	}
+
 	for (Component* pComponent : m_pComponents)
 	{
 		pComponent->Update();
@@ -51,6 +58,11 @@ void dae::GameObject::Update()
 
 void dae::GameObject::FixedUpdate()
 {
+	if (!m_IsEnabled)
+	{
+		return;
+	}
+
 	for (Component* pComponent : m_pComponents)
 	{
 		pComponent->FixedUpdate();
@@ -64,6 +76,11 @@ void dae::GameObject::FixedUpdate()
 
 void dae::GameObject::LateUpdate()
 {
+	if (!m_IsEnabled)
+	{
+		return;
+	}
+
 	for (Component* pComponent : m_pComponents)
 	{
 		pComponent->LateUpdate();
@@ -77,6 +94,11 @@ void dae::GameObject::LateUpdate()
 
 void dae::GameObject::Render() const
 {
+	if (!m_IsEnabled)
+	{
+		return;
+	}
+
 	for (Component* pComponent : m_pComponents)
 	{
 		pComponent->Render();
@@ -98,9 +120,32 @@ void dae::GameObject::SetScene(Scene* pScene)
 	m_pScene = pScene;
 }
 
+void dae::GameObject::SetTag(const std::string& tag)
+{
+	m_Tag = tag;
+}
+
 void dae::GameObject::AddChild(GameObject* pChild)
 {
-	m_pChildren.push_back(pChild);
+	if (!pChild->GetScene())
+	{
+		m_pChildren.push_back(pChild);
+		pChild->SetScene(m_pScene);
+	}
+	else
+	{
+		std::cout << "GameObject::AddChild(GameObject* pChild) > child is already added to a scene" << std::endl;
+	}
+}
+
+void dae::GameObject::MarkForDelete()
+{
+	m_IsMarkedForDelete = true;
+}
+
+void dae::GameObject::SetEnabled(bool isEnabled)
+{
+	m_IsEnabled = isEnabled;
 }
 
 dae::GameObject* dae::GameObject::GetChildByName(const std::string& name) const
@@ -151,7 +196,22 @@ dae::Scene* dae::GameObject::GetScene() const
 	return m_pScene;
 }
 
+bool dae::GameObject::GetIsMarkedForDelete() const
+{
+	return m_IsMarkedForDelete;
+}
+
 int dae::GameObject::GetInstanceCount()
 {
 	return m_InstanceCount;
+}
+
+const std::string& dae::GameObject::GetTag() const
+{
+	return m_Tag;
+}
+
+bool dae::GameObject::GetIsEnabled() const
+{
+	return m_IsEnabled;
 }

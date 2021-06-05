@@ -7,7 +7,6 @@ namespace dae
 	class GameObject;
 	class Scene
 	{
-		//friend Scene& SceneManager::CreateScene(const std::string& name);
 	public:
 		Scene(const GameSettings& gameSettings);
 		Scene(const GameSettings& gameSettings, const std::string& name);
@@ -30,8 +29,10 @@ namespace dae
 		bool GetIsMarkedForDelete() const;
 		bool GetIsMarkedforRestart() const;
 		virtual void CreateScene() = 0;
+		virtual void OnSceneEnd();
 
 		GameObject* GetGameObjectByName(const std::string& name) const;
+		void GetGameObjectsWithTag(std::vector<GameObject*>& pGameObjects, const std::string& tag);
 
 	protected:
 		GameSettings m_GameSettings;

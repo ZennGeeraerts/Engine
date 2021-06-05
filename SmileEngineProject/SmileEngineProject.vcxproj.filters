@@ -5,18 +5,151 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{12f83ea7-cfeb-4599-b65e-28062a62a520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{7bf9e9cd-a41a-4cfe-bbda-169ad0020c26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{f2eac3bc-5703-4ad2-ba3f-7b439214126a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes\singleplayer">
+      <UniqueIdentifier>{c7ee0d26-5600-49fd-b238-b0f6aa1fb832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes\co-op">
+      <UniqueIdentifier>{ff9ecb49-b004-4852-81fc-4c4dd9a00e81}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_CoilyController.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_GameManager.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_Health.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_Lives.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_PlayerCollision.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_QBertMovement.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_Score.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_SlickAndSlamController.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_Teleport.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_Tile.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_UggController.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\C_WrongwayController.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\MainMenu.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\ControlsMenu.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\GameModeMenu.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\PlayerUI.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\Level1.cpp">
+      <Filter>Source Files\Scenes\singleplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SmileEngine\Level2.cpp">
+      <Filter>Source Files\Scenes\singleplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="CoopLevel1.cpp">
+      <Filter>Source Files\Scenes\co-op</Filter>
+    </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Source Files\Scenes\singleplayer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SmileEngine\C_CoilyController.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_GameManager.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_Health.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_Lives.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_PlayerCollision.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_QBertMovement.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_Score.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_SlickAndSlamController.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_Teleport.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_Tile.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_UggController.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\C_WrongwayController.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\MainMenu.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\ControlsMenu.h">
+      <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\GameModeMenu.h">
+      <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\PlayerUI.h">
+      <Filter>Source Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\Level1.h">
+      <Filter>Source Files\Scenes\singleplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmileEngine\Level2.h">
+      <Filter>Source Files\Scenes\singleplayer</Filter>
+    </ClInclude>
+    <ClInclude Include="CoopLevel1.h">
+      <Filter>Source Files\Scenes\co-op</Filter>
+    </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>Source Files\Scenes\singleplayer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,3 +16,8 @@ void dae::Component::FixedUpdate(){}
 void dae::Component::LateUpdate(){}
 
 void dae::Component::Render() const{}
+
+dae::GameObject* dae::Component::GetGameObject() const
+{
+	return m_pGameObject;
+}

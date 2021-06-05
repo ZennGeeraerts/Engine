@@ -5,6 +5,7 @@ namespace dae
 {
     class C_Transform;
     class Subject;
+    class C_Teleport;
 
     class C_QBertMovement final : public Component
     {
@@ -16,6 +17,14 @@ namespace dae
             eRevert
         };
 
+        enum class MovementDirection
+        {
+            eBottomLeft,
+            eTopRight,
+            eBottomRight,
+            eTopLeft
+        };
+
         C_QBertMovement(GameObject* pGameObject);
         virtual ~C_QBertMovement() noexcept = default;
 
@@ -23,6 +32,7 @@ namespace dae
         void SetTexturePaths(const std::vector<std::string>& texturePaths);
         void SetStartTile(int tileIndex);
         void SetTileChange(TileChange tileChange);
+        void SetTeleports(const std::vector<C_Teleport*> pTeleports);
 
         void Update() override;
 
@@ -40,11 +50,14 @@ namespace dae
         int GetTileSize() const;
         Subject* GetSubject() const;
         int GetCurrentTileIndex() const;
+        bool GetHasDestPosReached() const;
 
     private:
         void MoveToTile();
         void PlayJumpSound() const;
         void CheckValidTile(int previousRow);
+        void Move(int currentRow);
+        bool CheckTeleport(MovementDirection movementDir);
 
         int m_CurrentTileIndex;
         C_Transform* m_pTransform;
@@ -57,6 +70,7 @@ namespace dae
         Subject* m_pSubject;
         int m_StartTile;
         TileChange m_TileChange;
+        std::vector<C_Teleport*> m_pTeleports;
     };
 }
 

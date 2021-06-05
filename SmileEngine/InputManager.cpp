@@ -99,8 +99,20 @@ bool dae::InputManager::IsReleased(XBoxController::ControllerButton button) cons
 
 void dae::InputManager::AddInputAction(XBoxController::ControllerButton button, InputCommand* pCommand)
 {
+	RemoveInputAction(button);
+	m_ControllerCommandsMap[button] = pCommand;
+}
+
+void dae::InputManager::AddInputAction(SDL_Scancode button, InputCommand* pCommand)
+{
+	RemoveInputAction(button);
+	m_KeyboardCommandsMap[button] = pCommand;
+}
+
+void dae::InputManager::RemoveInputAction(XBoxController::ControllerButton button)
+{
 	auto it = std::find_if(m_ControllerCommandsMap.begin(), m_ControllerCommandsMap.end(),
-		[button](const auto& command) 
+		[button](const auto& command)
 		{
 			return command.first == button;
 		}
@@ -111,11 +123,9 @@ void dae::InputManager::AddInputAction(XBoxController::ControllerButton button, 
 		delete (*it).second;
 		m_ControllerCommandsMap.erase(button);
 	}
-
-	m_ControllerCommandsMap[button] = pCommand;
 }
 
-void dae::InputManager::AddInputAction(SDL_Scancode button, InputCommand* pCommand)
+void dae::InputManager::RemoveInputAction(SDL_Scancode button)
 {
 	auto it = std::find_if(m_KeyboardCommandsMap.begin(), m_KeyboardCommandsMap.end(),
 		[button](const auto& command)
@@ -129,6 +139,4 @@ void dae::InputManager::AddInputAction(SDL_Scancode button, InputCommand* pComma
 		delete (*it).second;
 		m_KeyboardCommandsMap.erase(button);
 	}
-
-	m_KeyboardCommandsMap[button] = pCommand;
 }

@@ -170,7 +170,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master\backends;$(SolutionDir)3rdParty\imgui-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -219,7 +219,7 @@ xcopy "$(SolutionDir)$(Platform)\$(Configuration)\*.dll" "$(OutputPath)" /R /Y</
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master\backends;$(SolutionDir)3rdParty\imgui-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -272,7 +272,7 @@ xcopy "$(SolutionDir)$(Platform)\$(Configuration)\*.dll" "$(OutputPath)" /R /Y</
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master\backends;$(SolutionDir)3rdParty\imgui-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -321,7 +321,7 @@ xcopy "$(SolutionDir)$(Platform)\$(Configuration)\*.dll" "$(OutputPath)" /R /Y</
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SmileEngine;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\imgui-master\backends;$(SolutionDir)3rdParty\imgui-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -369,7 +369,49 @@ xcopy "$(SolutionDir)$(Platform)\$(Configuration)\*.dll" "$(OutputPath)" /R /Y</
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\SmileEngine\ControlsMenu.cpp" />
+    <ClCompile Include="..\SmileEngine\C_CoilyController.cpp" />
+    <ClCompile Include="..\SmileEngine\C_GameManager.cpp" />
+    <ClCompile Include="..\SmileEngine\C_Health.cpp" />
+    <ClCompile Include="..\SmileEngine\C_Lives.cpp" />
+    <ClCompile Include="..\SmileEngine\C_PlayerCollision.cpp" />
+    <ClCompile Include="..\SmileEngine\C_QBertMovement.cpp" />
+    <ClCompile Include="..\SmileEngine\C_Score.cpp" />
+    <ClCompile Include="..\SmileEngine\C_SlickAndSlamController.cpp" />
+    <ClCompile Include="..\SmileEngine\C_Teleport.cpp" />
+    <ClCompile Include="..\SmileEngine\C_Tile.cpp" />
+    <ClCompile Include="..\SmileEngine\C_UggController.cpp" />
+    <ClCompile Include="..\SmileEngine\C_WrongwayController.cpp" />
+    <ClCompile Include="..\SmileEngine\GameModeMenu.cpp" />
+    <ClCompile Include="..\SmileEngine\Level1.cpp" />
+    <ClCompile Include="..\SmileEngine\Level2.cpp" />
+    <ClCompile Include="..\SmileEngine\MainMenu.cpp" />
+    <ClCompile Include="..\SmileEngine\PlayerUI.cpp" />
+    <ClCompile Include="CoopLevel1.cpp" />
+    <ClCompile Include="Level3.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SmileEngine\ControlsMenu.h" />
+    <ClInclude Include="..\SmileEngine\C_CoilyController.h" />
+    <ClInclude Include="..\SmileEngine\C_GameManager.h" />
+    <ClInclude Include="..\SmileEngine\C_Health.h" />
+    <ClInclude Include="..\SmileEngine\C_Lives.h" />
+    <ClInclude Include="..\SmileEngine\C_PlayerCollision.h" />
+    <ClInclude Include="..\SmileEngine\C_QBertMovement.h" />
+    <ClInclude Include="..\SmileEngine\C_Score.h" />
+    <ClInclude Include="..\SmileEngine\C_SlickAndSlamController.h" />
+    <ClInclude Include="..\SmileEngine\C_Teleport.h" />
+    <ClInclude Include="..\SmileEngine\C_Tile.h" />
+    <ClInclude Include="..\SmileEngine\C_UggController.h" />
+    <ClInclude Include="..\SmileEngine\C_WrongwayController.h" />
+    <ClInclude Include="..\SmileEngine\GameModeMenu.h" />
+    <ClInclude Include="..\SmileEngine\Level1.h" />
+    <ClInclude Include="..\SmileEngine\Level2.h" />
+    <ClInclude Include="..\SmileEngine\MainMenu.h" />
+    <ClInclude Include="..\SmileEngine\PlayerUI.h" />
+    <ClInclude Include="CoopLevel1.h" />
+    <ClInclude Include="Level3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

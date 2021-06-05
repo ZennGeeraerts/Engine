@@ -19,6 +19,8 @@ namespace dae
 		virtual void LateUpdate();
 		virtual void Render() const;
 
+		GameObject* GetGameObject() const;
+
 	protected:
 		GameObject* m_pGameObject;
 	};
