@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "UIManager.h"
 #include "PlayerUI.h"
+#include "LevelParser.h"
 
 // Components
 #include "C_Render.h"
@@ -66,27 +67,39 @@ void dae::Level2::CreateScene()
 	auto pTileMapObj = std::make_shared<GameObject>();
 	const int nrOfRows{ 7 };
 	const float tileSize{ 32.f };
-	glm::vec2 startRowPos{ m_GameSettings.m_WindowWidth / 2 - tileSize / 2, 10.f };
-	glm::vec2 tilePos{ startRowPos };
 
-	for (int i{}; i < nrOfRows; ++i)
+	std::vector<glm::vec3> tilePositions{};
+	LevelParser levelParser{};
+	if (!levelParser.ReadLevelBin("../Data/levelBin.bin", tilePositions))
 	{
-		for (int j{}; j < (i + 1); ++j)
+		glm::vec2 startRowPos{ m_GameSettings.m_WindowWidth / 2 - tileSize / 2, 10.f };
+		glm::vec2 tilePos{ startRowPos };
+		for (int i{}; i < nrOfRows; ++i)
 		{
-			auto pTileObj = new GameObject();
-			C_Transform* pTransform = pTileObj->GetComponent<C_Transform>();
-			pTransform->SetPosition(tilePos.x, tilePos.y, 1.0f);
-			pTileObj->AddComponent<C_Render>();
-			auto pTile = pTileObj->AddComponent<C_Tile>();
-			pTile->SetMaxStage(2);
-			pTileMapObj->AddChild(pTileObj);
-			tilePos.x += tileSize;
+			for (int j{}; j < (i + 1); ++j)
+			{
+				tilePositions.push_back(glm::vec3{ tilePos.x, tilePos.y, 1.0f });
+				tilePos.x += tileSize;
+			}
+
+			startRowPos.x -= tileSize / 2;
+			startRowPos.y += tileSize * 0.75f;
+			tilePos = startRowPos;
 		}
 
-		startRowPos.x -= tileSize / 2;
-		startRowPos.y += tileSize * 0.75f;
-		tilePos = startRowPos;
+		levelParser.WriteLevelBin("../Data/levelBin.bin", tilePositions);
 	}
+	for (const auto& tilePos : tilePositions)
+	{
+		auto pTileObj = new GameObject();
+		C_Transform* pTransform = pTileObj->GetComponent<C_Transform>();
+		pTransform->SetPosition(tilePos.x, tilePos.y, tilePos.z);
+		pTileObj->AddComponent<C_Render>();
+		auto pTile = pTileObj->AddComponent<C_Tile>();
+		pTile->SetMaxStage(2);
+		pTileMapObj->AddChild(pTileObj);
+	}
+
 	pTileMapObj->SetName("TileMap0");
 	Add(pTileMapObj);
 
@@ -243,6 +256,7 @@ void dae::Level2::OnSceneEnd()
 	inputManager.RemoveInputAction(SDL_SCANCODE_S);
 
 	auto& sceneManager{ SceneManager::GetInstance() };
+	MarkForRestart();
 	sceneManager.SetScene(3);
 	sceneManager.GetScene(3)->CreateScene();
 }

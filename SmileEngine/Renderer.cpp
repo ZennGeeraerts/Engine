@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "Texture2D.h"
 #include "UIManager.h"
+#include "C_Render.h"
 
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
@@ -29,7 +30,14 @@ void dae::Renderer::Render()
 	SDL_RenderClear(m_Renderer);
 
 	// Render scene
-	SceneManager::GetInstance().Render();
+	for (const auto pRenderComponent : m_pRenderComponents)
+	{
+		if (pRenderComponent->GetGameObject()->GetIsEnabled())
+		{
+			pRenderComponent->Render();
+		}
+	}
+
 	// Render UI
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame(m_pWindow);
@@ -90,4 +98,14 @@ int dae::Renderer::GetOpenGLDriverIndex() const
 		}
 	}
 	return oglIdx;
+}
+
+void dae::Renderer::RegisterRenderComponent(C_Render* pRenderComponent)
+{
+	m_pRenderComponents.push_back(pRenderComponent);
+}
+
+void dae::Renderer::UnRegisterRenderComponent(C_Render* pRenderComponent)
+{
+	m_pRenderComponents.erase(std::remove(m_pRenderComponents.begin(), m_pRenderComponents.end(), pRenderComponent));
 }

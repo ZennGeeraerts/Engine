@@ -7,6 +7,7 @@ struct SDL_Renderer;
 namespace dae
 {
 	class Texture2D;
+	class C_Render;
 	/**
 	 * Simple RAII wrapper for the SDL renderer
 	 */
@@ -22,9 +23,13 @@ namespace dae
 
 		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
 		int GetOpenGLDriverIndex() const;
+		void RegisterRenderComponent(C_Render* pRenderComponent);
+		void UnRegisterRenderComponent(C_Render* pRenderComponent);
+
 	private:
 		SDL_Renderer* m_Renderer{};
 		SDL_Window* m_pWindow{};
+		std::vector<C_Render*> m_pRenderComponents{};
 	};
 }
 

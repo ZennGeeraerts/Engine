@@ -22,7 +22,6 @@ namespace dae
 		void Update();
 		void FixedUpdate();
 		void LateUpdate();
-		void Render() const;
 
 		template <typename ComponentType>
 		ComponentType* GetComponent() const

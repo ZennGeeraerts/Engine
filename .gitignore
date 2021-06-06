@@ -355,4 +355,15 @@ MigrationBackup/
 *
 !/*
 !/SmileEngineProject/*.cpp
+
+*
+!/*
 !/SmileEngineProject/*.h
+
+*
+!/*
+!/SmileEngine/*.cpp
+
+*
+!/*
+!/SmileEngine/*.h

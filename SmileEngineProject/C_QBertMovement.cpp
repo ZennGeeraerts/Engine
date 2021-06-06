@@ -316,7 +316,7 @@ void dae::C_QBertMovement::CheckValidTile(int previousRow)
 	const int currentRow{ CalculateCurrentRow() };
 	int rowDifference{ currentRow - previousRow };
 	if (((rowDifference != 1) && (rowDifference != -1)) 
-		|| (m_CurrentTileIndex < 0) || (m_CurrentTileIndex >= m_pTileMap->GetChildren().size()))
+		|| (m_CurrentTileIndex < 0) || (m_CurrentTileIndex >= static_cast<int>(m_pTileMap->GetChildren().size())))
 	{
 		m_pSubject->Notify(m_pGameObject, "WalkOutMap");
 	}

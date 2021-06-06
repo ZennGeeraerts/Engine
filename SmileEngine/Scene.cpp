@@ -73,14 +73,6 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Render() const
-{
-	for (const auto& pObject : m_pGameObjects)
-	{
-		pObject->Render();
-	}
-}
-
 GameObject* Scene::GetGameObjectByName(const std::string& name) const
 {
 	auto it = std::find_if(m_pGameObjects.begin(), m_pGameObjects.end(),

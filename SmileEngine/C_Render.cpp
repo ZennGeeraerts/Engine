@@ -6,7 +6,12 @@
 dae::C_Render::C_Render(GameObject* pGameObject)
 	: Component(pGameObject)
 {
+	dae::Renderer::GetInstance().RegisterRenderComponent(this);
+}
 
+dae::C_Render::~C_Render()
+{
+	dae::Renderer::GetInstance().UnRegisterRenderComponent(this);
 }
 
 void dae::C_Render::Render() const

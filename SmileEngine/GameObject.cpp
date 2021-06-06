@@ -92,24 +92,6 @@ void dae::GameObject::LateUpdate()
 	}
 }
 
-void dae::GameObject::Render() const
-{
-	if (!m_IsEnabled)
-	{
-		return;
-	}
-
-	for (Component* pComponent : m_pComponents)
-	{
-		pComponent->Render();
-	}
-
-	for (GameObject* pChild : m_pChildren)
-	{
-		pChild->Render();
-	}
-}
-
 void dae::GameObject::SetName(const std::string& name)
 {
 	m_Name = name;
@@ -167,7 +149,7 @@ dae::GameObject* dae::GameObject::GetChildByName(const std::string& name) const
 
 dae::GameObject* dae::GameObject::GetChildByIndex(int index) const
 {
-	if ((index < m_pChildren.size()) && (index > -1))
+	if ((index < static_cast<int>(m_pChildren.size())) && (index > -1))
 	{
 		return m_pChildren[index];
 	}

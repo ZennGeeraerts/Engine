@@ -42,26 +42,19 @@ void dae::SceneManager::LateUpdate()
 	m_CurrentScene->LateUpdate();
 }
 
-void dae::SceneManager::Render()
-{
-	if (!m_CurrentScene)
-	{
-		return;
-	}
-
-	m_CurrentScene->Render();
-}
-
+#pragma warning (push)
+#pragma warning (disable:26816)
 dae::Scene& dae::SceneManager::AddScene(std::shared_ptr<Scene> pScene)
 {
 	m_Scenes.push_back(pScene);
 	m_CurrentScene = pScene;
 	return *pScene;
 }
+#pragma warning(pop)
 
 void dae::SceneManager::RemoveScene(int index)
 {
-	if ((index >= 0) && (index < m_Scenes.size()))
+	if ((index >= 0) && (index < static_cast<int>(m_Scenes.size())))
 	{
 		m_Scenes.erase(m_Scenes.begin() + index);
 	}
@@ -78,7 +71,7 @@ void dae::SceneManager::RemoveScene(std::shared_ptr<Scene> pScene)
 
 void dae::SceneManager::SetScene(int index)
 {
-	if ((index >= 0) && (index < m_Scenes.size()))
+	if ((index >= 0) && (index < static_cast<int>(m_Scenes.size())))
 	{
 		m_CurrentScene = m_Scenes[index];
 	}
@@ -90,7 +83,7 @@ void dae::SceneManager::SetScene(int index)
 
 std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int index) const
 {
-	if (index < m_Scenes.size() && (index > -1))
+	if ((index < static_cast<int>(m_Scenes.size())) && (index > -1))
 	{
 		return m_Scenes[index];
 	}

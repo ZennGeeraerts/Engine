@@ -114,7 +114,7 @@ void dae::C_CoilyController::ChasePlayer()
 		const int connectedTile = m_pTeleport->GetConnectedTile();
 		auto pTileMap = SceneManager::GetInstance().GetCurrentScene()->GetGameObjectByName("TileMap0");
 
-		if ((connectedTile >= 0) && (connectedTile < pTileMap->GetChildren().size()))
+		if ((connectedTile >= 0) && (connectedTile < static_cast<int>(pTileMap->GetChildren().size())))
 		{
 			dir = pTileMap->GetChildByIndex(connectedTile)->GetTransform()->GetPosition() - coilyPos;
 

@@ -15,7 +15,7 @@ namespace dae
 		void Update();
 		void FixedUpdate();
 		void LateUpdate();
-		void Render();
+
 		std::shared_ptr<Scene> GetScene(int index) const;
 		std::shared_ptr<Scene> GetCurrentScene() const;
 

@@ -81,7 +81,7 @@ void dae::C_Teleport::Update()
 	if (m_RotationTime < 0)
 	{
 		++m_TextureIndex;
-		if (m_TextureIndex == m_TexturePaths.size())
+		if (m_TextureIndex == static_cast<int>(m_TexturePaths.size()))
 		{
 			m_TextureIndex = 0;
 		}

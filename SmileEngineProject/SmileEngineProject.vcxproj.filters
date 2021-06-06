@@ -110,6 +110,9 @@
     <ClCompile Include="VersusLevel3.cpp">
       <Filter>Source Files\Scenes\versus</Filter>
     </ClCompile>
+    <ClCompile Include="LevelParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoopLevel1.h">
@@ -189,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="VersusLevel3.h">
       <Filter>Source Files\Scenes\versus</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelParser.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

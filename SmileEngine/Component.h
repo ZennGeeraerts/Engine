@@ -17,7 +17,6 @@ namespace dae
 		virtual void Update();
 		virtual void FixedUpdate();
 		virtual void LateUpdate();
-		virtual void Render() const;
 
 		GameObject* GetGameObject() const;
 
