@@ -351,3 +351,8 @@ MigrationBackup/
 *
 !/*
 !/3rdParty/**
+
+*
+!/*
+!/SmileEngineProject/*.cpp
+!/SmileEngineProject/*.h
