@@ -36,12 +36,6 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{ec04f782-e378-4225-b954-190eae7b85be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameObjects\Prefabs">
-      <UniqueIdentifier>{f99e97c0-fb77-463c-bead-60c76740fb6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameObjects\Prefabs\Base">
-      <UniqueIdentifier>{e2e9e42d-e5fe-4f62-9361-2d0269e1c279}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Sound">
       <UniqueIdentifier>{54ebcf8e-2961-47da-ab08-e0c482b5c75e}</UniqueIdentifier>
     </Filter>
@@ -113,9 +107,6 @@
     <ClInclude Include="UIManager.h">
       <Filter>Source Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Prefab.h">
-      <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
-    </ClInclude>
     <ClInclude Include="SmTime.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -146,20 +137,8 @@
     <ClInclude Include="LuaVM.h">
       <Filter>Source Files\Lua</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClInclude>
-    <ClInclude Include="TileMap.h">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>Source Files\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Coily.h">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
     </ClInclude>
     <ClInclude Include="UILayer.h">
       <Filter>Source Files\UI</Filter>
@@ -250,9 +229,6 @@
     <ClCompile Include="UIManager.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Prefab.cpp">
-      <Filter>Source Files\GameObjects\Prefabs\Base</Filter>
-    </ClCompile>
     <ClCompile Include="SmTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -280,20 +256,8 @@
     <ClCompile Include="LuaVM.cpp">
       <Filter>Source Files\Lua</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Coily.cpp">
-      <Filter>Source Files\GameObjects\Prefabs</Filter>
     </ClCompile>
     <ClCompile Include="UILayer.cpp">
       <Filter>Source Files\UI</Filter>

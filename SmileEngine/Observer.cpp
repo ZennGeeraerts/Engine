@@ -3,9 +3,6 @@
 #include "GameObject.h"
 #include "Subject.h"
 
-#include "C_Transform.h"
-#include "C_Lives.h"
-
 dae::Observer::Observer()
 	: m_pSubjects{}
 	, m_pNext{ nullptr }
