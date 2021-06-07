@@ -18,7 +18,7 @@ namespace dae
 			eDown
 		};
 
-		~InputManager();
+		~InputManager() noexcept;
 		bool ProcessInput();
 
 		bool IsPressed(XBoxController::ControllerButton button) const;

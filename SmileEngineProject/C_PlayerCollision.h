@@ -5,7 +5,7 @@ namespace dae
 {
 	class C_QBertMovement;
 
-	class C_PlayerCollision : public Component
+	class C_PlayerCollision final : public Component
 	{
 	public:
 		C_PlayerCollision(GameObject* pGameObject);

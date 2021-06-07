@@ -10,7 +10,7 @@ namespace dae
 	class UIManager final : public Singleton<UIManager>
 	{
 	public:
-		~UIManager();
+		~UIManager() noexcept;
 		void Render();
 
 		void AddUILayer(UILayer* pUI);

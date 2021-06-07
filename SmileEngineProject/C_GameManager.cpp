@@ -54,7 +54,7 @@ void dae::C_GameManager::CheckWinCondition()
 		}
 	}
 
-	if (nrOfTilesCompleted == /*pTiles.size()*/ 3)
+	if (nrOfTilesCompleted == static_cast<int>(pTiles.size()))
 	{
 		std::vector<GameObject*> pTeleports{};
 		pScene->GetGameObjectsWithTag(pTeleports, "Teleport");
@@ -139,12 +139,10 @@ void dae::C_GameManager::Notify(GameObject* pGameObject, const std::string& even
 	}
 	else if (eventName == "PlayerDied")
 	{
-		std::cout << "Played died" << std::endl;
 		pGameObject->GetComponent<C_QBertMovement>()->MoveToStartTile(true);
 	}
 	else if (eventName == "GameOver")
 	{
-		std::cout << "Game over" << std::endl;
 		pGameObject->MarkForDelete();
 	}
 	else if (eventName == "UpdateTile")

@@ -15,9 +15,9 @@ namespace dae
 		explicit GameObject(const std::string& name);
 		virtual ~GameObject();
 		GameObject(const GameObject & other) = delete;
-		GameObject(GameObject && other) = delete;
+		GameObject(GameObject && other) noexcept = delete;
 		GameObject& operator=(const GameObject & other) = delete;
-		GameObject& operator=(GameObject && other) = delete;
+		GameObject& operator=(GameObject && other) noexcept = delete;
 
 		void Update();
 		void FixedUpdate();

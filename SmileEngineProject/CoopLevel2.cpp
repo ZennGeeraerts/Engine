@@ -229,7 +229,7 @@ void dae::CoopLevel2::CreateScene()
 	pMovementWrongway->SetTexturePaths(std::vector<std::string>{ "wrongway_1.png", "wrongway_1.png", "wrongway_0.png", "wrongway_0.png" });
 	pWrongway->AddComponent<C_WrongwayController>();
 
-	//Slick
+	// Slick
 	auto pSlick = std::make_shared<GameObject>("Slick");
 	pSlick->SetTag("Catchable");
 	Add(pSlick);

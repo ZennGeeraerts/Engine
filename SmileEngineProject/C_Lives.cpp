@@ -9,6 +9,11 @@ dae::C_Lives::C_Lives(GameObject* pGameObject)
 {
 }
 
+dae::C_Lives::~C_Lives()
+{
+	delete m_pSubject;
+}
+
 void dae::C_Lives::SetLives(int lives)
 {
 	m_Lives = lives;

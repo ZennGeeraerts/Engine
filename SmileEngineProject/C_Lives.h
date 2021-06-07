@@ -8,7 +8,7 @@ namespace dae
     {
     public:
         C_Lives(GameObject* pGameObject);
-        virtual ~C_Lives() noexcept = default;
+        virtual ~C_Lives() noexcept;
         void SetLives(int lives);
         int GetLives() const;
         void RemoveLive();

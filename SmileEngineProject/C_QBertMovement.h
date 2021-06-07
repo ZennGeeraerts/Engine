@@ -26,7 +26,12 @@ namespace dae
         };
 
         C_QBertMovement(GameObject* pGameObject);
-        virtual ~C_QBertMovement() noexcept = default;
+        virtual ~C_QBertMovement() noexcept;
+
+        C_QBertMovement(const C_QBertMovement& other) = delete;
+        C_QBertMovement(C_QBertMovement&& other) noexcept = delete;
+        C_QBertMovement& operator=(const C_QBertMovement& other) = delete;
+        C_QBertMovement& operator=(C_QBertMovement&& other) noexcept = delete;
 
         void SetTileMap(GameObject* pTileMap);
         void SetTexturePaths(const std::vector<std::string>& texturePaths);

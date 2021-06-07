@@ -11,7 +11,12 @@ namespace dae
 	public:
 		Observer();
 		Observer(const std::vector<Subject*> pSubjects);
-		virtual ~Observer();
+		virtual ~Observer() noexcept;
+
+		Observer(const Observer& other) = delete;
+		Observer(Observer&& other) noexcept = delete;
+		Observer& operator=(const Observer& other) = delete;
+		Observer& operator=(Observer&& other) noexcept = delete;
 
 		void AddSubject(Subject* pSubject);
 		virtual void Notify(GameObject* pGameObject, const std::string& eventName) = 0;
