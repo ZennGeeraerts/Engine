@@ -13,7 +13,7 @@ namespace dae
 	public:
 		GameObject();
 		explicit GameObject(const std::string& name);
-		virtual ~GameObject();
+		virtual ~GameObject() noexcept;
 		GameObject(const GameObject & other) = delete;
 		GameObject(GameObject && other) noexcept = delete;
 		GameObject& operator=(const GameObject & other) = delete;

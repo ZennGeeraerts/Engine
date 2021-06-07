@@ -26,3 +26,4 @@ Scenes can be marked for delete or for restart.
 GameObjects can have children.
 A child can be optained by index or by name.
 GameObjects can be marked for delete.
+All GameObjects have a TransformComponent that can be obtained by GetTransform().
