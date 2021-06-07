@@ -520,6 +520,7 @@ SDL2_ttf.lib
     <ClInclude Include="SDLInputSystem.h" />
     <ClInclude Include="SDLInputSystemImpl.h" />
     <ClInclude Include="SDLSoundSystem.h" />
+    <ClInclude Include="SDLSoundSystemImpl.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="SmileEngine.h" />
     <ClInclude Include="SmileEngineLibType.h" />
@@ -638,6 +639,7 @@ SDL2_ttf.lib
     <ClCompile Include="SDLInputSystem.cpp" />
     <ClCompile Include="SDLInputSystemImpl.cpp" />
     <ClCompile Include="SDLSoundSystem.cpp" />
+    <ClCompile Include="SDLSoundSystemImpl.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="SmileEngine.cpp" />
     <ClCompile Include="SmileEnginePCH.cpp">

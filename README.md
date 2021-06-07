@@ -12,7 +12,7 @@ When the observer gets deleted it unregisters its subjects.
 The subjects are registered to an observer as a linked list.
 This is done to increase performance a bit since the observer pattern can be slow at times.
 
-I implemented the pimpl pattern for the XboxController and SDLInputSystem.
+I implemented the pimpl pattern for the XboxController, SDLInputSystem and SDLSoundSystem.
 
 Levels can be loaded as a .txt or a .bin
 There is a .txt so changes to the level can be made in this file by developers.
@@ -27,3 +27,5 @@ GameObjects can have children.
 A child can be optained by index or by name.
 GameObjects can be marked for delete.
 All GameObjects have a TransformComponent that can be obtained by GetTransform().
+
+https://github.com/ZennGeeraerts/Engine

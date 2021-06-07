@@ -173,6 +173,9 @@
     <ClInclude Include="SDLInputSystemImpl.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="SDLSoundSystemImpl.h">
+      <Filter>Source Files\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmileEnginePCH.cpp">
@@ -300,6 +303,9 @@
     </ClCompile>
     <ClCompile Include="SDLInputSystemImpl.cpp">
       <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLSoundSystemImpl.cpp">
+      <Filter>Source Files\Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
