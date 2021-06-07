@@ -69,23 +69,14 @@ void dae::CoopLevel1::CreateScene()
 	
 	std::vector<glm::vec3> tilePositions{};
 	LevelParser levelParser{};
+
+#if defined(WIN32)
+	CreateTilePositions(tilePositions, tileSize, nrOfRows);
+#endif
+
 	if (!levelParser.ReadLevelBin("../Data/levelBin.bin", tilePositions))
 	{
-		glm::vec2 startRowPos{ m_GameSettings.m_WindowWidth / 2 - tileSize / 2, 10.f };
-		glm::vec2 tilePos{ startRowPos };
-		for (int i{}; i < nrOfRows; ++i)
-		{
-			for (int j{}; j < (i + 1); ++j)
-			{
-				tilePositions.push_back(glm::vec3{ tilePos.x, tilePos.y, 1.0f });
-				tilePos.x += tileSize;
-			}
-
-			startRowPos.x -= tileSize / 2;
-			startRowPos.y += tileSize * 0.75f;
-			tilePos = startRowPos;
-		}
-
+		CreateTilePositions(tilePositions, tileSize, nrOfRows);
 		levelParser.WriteLevelBin("../Data/levelBin.bin", tilePositions);
 	}
 	for (const auto& tilePos : tilePositions)
@@ -291,4 +282,22 @@ void dae::CoopLevel1::OnSceneEnd()
 	MarkForRestart();
 	sceneManager.GetScene(5)->CreateScene();
 	sceneManager.SetScene(5);
+}
+
+void dae::CoopLevel1::CreateTilePositions(std::vector<glm::vec3>& tilePositions, float tileSize, int nrOfRows)
+{
+	glm::vec2 startRowPos{ m_GameSettings.m_WindowWidth / 2 - tileSize / 2, 10.f };
+	glm::vec2 tilePos{ startRowPos };
+	for (int i{}; i < nrOfRows; ++i)
+	{
+		for (int j{}; j < (i + 1); ++j)
+		{
+			tilePositions.push_back(glm::vec3{ tilePos.x, tilePos.y, 1.0f });
+			tilePos.x += tileSize;
+		}
+
+		startRowPos.x -= tileSize / 2;
+		startRowPos.y += tileSize * 0.75f;
+		tilePos = startRowPos;
+	}
 }
