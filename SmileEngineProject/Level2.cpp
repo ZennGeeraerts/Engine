@@ -71,7 +71,7 @@ void dae::Level2::CreateScene()
 	std::vector<glm::vec3> tilePositions{};
 	LevelParser levelParser{};
 
-#if defined(WIN32)
+#if defined _M_IX86
 	CreateTilePositions(tilePositions, tileSize, nrOfRows);
 #endif
 
