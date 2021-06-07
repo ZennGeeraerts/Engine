@@ -167,6 +167,9 @@
     <ClInclude Include="BinaryWriter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="XBoxControllerImpl.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmileEnginePCH.cpp">
@@ -288,6 +291,9 @@
     </ClCompile>
     <ClCompile Include="BinaryWriter.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XBoxControllerImpl.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

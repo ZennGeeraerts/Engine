@@ -40,6 +40,7 @@ void dae::C_Health::SetHealth(int health)
 dae::C_Health::~C_Health()
 {
 	delete m_pUISubject;
+	delete m_pGameManagerSubject;
 }
 
 void dae::C_Health::TakeDamage(int damage)

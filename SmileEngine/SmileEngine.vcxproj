@@ -539,6 +539,7 @@ SDL2_ttf.lib
     <ClInclude Include="UILayer.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="XBoxController.h" />
+    <ClInclude Include="XBoxControllerImpl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-master\backends\imgui_impl_opengl2.cpp">
@@ -664,6 +665,7 @@ SDL2_ttf.lib
     <ClCompile Include="UILayer.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="XBoxController.cpp" />
+    <ClCompile Include="XBoxControllerImpl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

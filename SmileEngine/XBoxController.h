@@ -1,10 +1,9 @@
 #pragma once
-#include <Windows.h>
-#include <Xinput.h>
-#pragma comment(lib, "XInput.lib")
 
 namespace dae
 {
+	class XBoxControllerImpl;
+
 	class XBoxController final
 	{
 	public:
@@ -28,6 +27,11 @@ namespace dae
 		};
 
 		XBoxController(int index);
+		~XBoxController() noexcept;
+		XBoxController(const XBoxController& other) = delete;
+		XBoxController(XBoxController&& other) noexcept = delete;
+		XBoxController& operator=(const XBoxController& other) = delete;
+		XBoxController& operator=(XBoxController&& other) noexcept = delete;
 
 		void ProcessInput();
 		bool IsPressed(ControllerButton button) const;
@@ -35,26 +39,7 @@ namespace dae
 		bool IsReleased(ControllerButton button) const;
 
 	private:
-		int m_Index;
-		XINPUT_STATE m_CurrentState;
-		XINPUT_STATE m_PreviousState;
-		int m_ButtonMasks[int(ControllerButton::eNrOfButtons)]
-		{
-			XINPUT_GAMEPAD_DPAD_UP,
-			XINPUT_GAMEPAD_DPAD_DOWN,
-			XINPUT_GAMEPAD_DPAD_LEFT,
-			XINPUT_GAMEPAD_DPAD_RIGHT,
-			XINPUT_GAMEPAD_START,
-			XINPUT_GAMEPAD_BACK,
-			XINPUT_GAMEPAD_LEFT_THUMB,
-			XINPUT_GAMEPAD_RIGHT_THUMB,
-			XINPUT_GAMEPAD_LEFT_SHOULDER,
-			XINPUT_GAMEPAD_RIGHT_SHOULDER,
-			XINPUT_GAMEPAD_A,
-			XINPUT_GAMEPAD_B,
-			XINPUT_GAMEPAD_X,
-			XINPUT_GAMEPAD_Y
-		};
+		XBoxControllerImpl* m_pImpl;
 	};
 }
 

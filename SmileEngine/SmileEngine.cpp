@@ -10,13 +10,6 @@
 #include "Scene.h"
 #include "SmTime.h"
 
-// Scenes
-//#include "MainMenu.h"
-//#include "Level1.h"
-//#include "Level2.h"
-//#include "Level3.h"
-//#include "CoopLevel1"
-
 // Input
 #include "InputManager.h"
 #include "InputCommands.h"
@@ -85,28 +78,6 @@ void dae::SmileEngine::LoadGame() const
 
 	// Input
 	inputManager.AddInputAction(SDL_SCANCODE_ESCAPE, new Quit{ InputManager::InputKeyAction::eDown });
-
-	// UI
-	//uiManager.AddUILayer(new GameModeMenu{ glm::vec2{ 200.f, 0.0f }, m_pWindow });
-	//uiManager.AddUILayer(new ControlsMenu{ glm::vec2{ 200.f, 150.f }, m_pWindow });
-	//CreateScenes();
-}
-
-void dae::SmileEngine::CreateScenes() const
-{
-	/*auto& sceneManager = SceneManager::GetInstance();
-
-	std::shared_ptr<MainMenu> pMainMenu = std::make_shared<MainMenu>(m_GameSettings);
-	sceneManager.AddScene(pMainMenu);
-	pMainMenu->CreateScene();
-
-	std::shared_ptr<Level1> pLevel1 = std::make_shared<Level1>(m_GameSettings);
-	sceneManager.AddScene(pLevel1);
-
-	std::shared_ptr<Level2> pLevel2 = std::make_shared<Level2>(m_GameSettings);
-	sceneManager.AddScene(pLevel2);
-
-	sceneManager.SetScene(0);*/
 }
 
 const dae::GameSettings& dae::SmileEngine::GetGameSettings() const

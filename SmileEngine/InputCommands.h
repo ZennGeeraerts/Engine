@@ -9,7 +9,7 @@ namespace dae
 	{
 	public:
 		InputCommand(GameObject* pGameObject, InputManager::InputKeyAction inputKeyAction);
-		virtual ~InputCommand() = default;
+		virtual ~InputCommand() noexcept = default;
 		virtual bool Execute() = 0;
 		InputManager::InputKeyAction GetInputKeyAction() const;
 	protected:
