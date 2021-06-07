@@ -518,6 +518,7 @@ SDL2_ttf.lib
     <ClInclude Include="NPCManager.h" />
     <ClInclude Include="NullSoundSystem.h" />
     <ClInclude Include="SDLInputSystem.h" />
+    <ClInclude Include="SDLInputSystemImpl.h" />
     <ClInclude Include="SDLSoundSystem.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="SmileEngine.h" />
@@ -635,6 +636,7 @@ SDL2_ttf.lib
     <ClCompile Include="NPCManager.cpp" />
     <ClCompile Include="NullSoundSystem.cpp" />
     <ClCompile Include="SDLInputSystem.cpp" />
+    <ClCompile Include="SDLInputSystemImpl.cpp" />
     <ClCompile Include="SDLSoundSystem.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="SmileEngine.cpp" />

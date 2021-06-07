@@ -3,14 +3,9 @@
 
 namespace dae
 {
-	class SDLInputSystemImpl;
-
-	class SDLInputSystem final
+	class SDLInputSystemImpl final
 	{
 	public:
-		SDLInputSystem();
-		~SDLInputSystem() noexcept;
-
 		void ProcessInput();
 		bool HandleInput();
 
@@ -18,7 +13,7 @@ namespace dae
 		bool IsDown(SDL_Scancode button) const;
 
 	private:
-		SDLInputSystemImpl* m_pImpl;
+		const Uint8* m_KeyboardStates{ nullptr };
 	};
 }
 

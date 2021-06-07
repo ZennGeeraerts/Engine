@@ -9,7 +9,7 @@ namespace dae
     {
     public:
         C_Score(GameObject* pGameObject);
-       virtual ~C_Score() noexcept;
+       virtual ~C_Score() noexcept = default;
 
        C_Score(const C_Score& other) = delete;
        C_Score(C_Score&& other) noexcept = delete;

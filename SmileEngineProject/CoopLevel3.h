@@ -3,7 +3,7 @@
 
 namespace dae
 {
-	class CoopLevel3 : public Scene
+	class CoopLevel3 final : public Scene
 	{
 	public:
 		CoopLevel3(const GameSettings& gameSettings);

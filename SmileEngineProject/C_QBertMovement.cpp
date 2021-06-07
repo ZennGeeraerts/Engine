@@ -23,11 +23,6 @@ dae::C_QBertMovement::C_QBertMovement(GameObject* pGameObject)
 	
 }
 
-dae::C_QBertMovement::~C_QBertMovement()
-{
-	delete m_pSubject;
-}
-
 void dae::C_QBertMovement::SetTileMap(GameObject* pTileMap)
 {
 	m_pTileMap = pTileMap;

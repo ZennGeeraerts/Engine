@@ -27,6 +27,7 @@ dae::Observer::~Observer()
 		if (pSubject)
 		{
 			pSubject->RemoveObserver(this);
+			delete pSubject;
 		}
 	}
 }

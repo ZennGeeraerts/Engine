@@ -11,11 +11,6 @@ dae::C_Score::C_Score(GameObject* pGameObject)
 
 }
 
-dae::C_Score::~C_Score()
-{
-	delete m_pSubject;
-}
-
 int dae::C_Score::GetScore() const
 {
 	return m_Score;

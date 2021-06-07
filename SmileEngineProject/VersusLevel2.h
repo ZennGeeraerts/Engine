@@ -3,7 +3,7 @@
 
 namespace dae
 {
-	class VersusLevel2 : public Scene
+	class VersusLevel2 final : public Scene
 	{
 	public:
 		VersusLevel2(const GameSettings& gameSettings);

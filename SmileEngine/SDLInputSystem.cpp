@@ -1,39 +1,34 @@
 #include "SmileEnginePCH.h"
 #include "SDLInputSystem.h"
+#include "SDLInputSystemImpl.h"
+
+dae::SDLInputSystem::SDLInputSystem()
+	: m_pImpl{ new SDLInputSystemImpl{} }
+{
+
+}
+
+dae::SDLInputSystem::~SDLInputSystem()
+{
+	delete m_pImpl;
+}
 
 void dae::SDLInputSystem::ProcessInput()
 {
-	m_KeyboardStates = SDL_GetKeyboardState(NULL);
+	m_pImpl->ProcessInput();
 }
 
 bool dae::SDLInputSystem::HandleInput()
 {
-	SDL_Event event;
-
-	if (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			return false;
-			break;
-		}
-	}
-
-	return true;
+	return m_pImpl->HandleInput();
 }
 
 bool dae::SDLInputSystem::IsPressed(SDL_Scancode button) const
 {
-	return IsDown(button);
+	return m_pImpl->IsPressed(button);
 }
 
 bool dae::SDLInputSystem::IsDown(SDL_Scancode button) const
 {
-	if (!m_KeyboardStates)
-	{
-		return false;
-	}
-
-	return m_KeyboardStates[button];
+	return m_pImpl->IsDown(button);
 }

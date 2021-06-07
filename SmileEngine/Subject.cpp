@@ -8,6 +8,16 @@ dae::Subject::Subject()
 
 }
 
+dae::Subject::~Subject()
+{
+	auto pCurrent{ m_pHead };
+	while (pCurrent)
+	{
+		RemoveObserver(pCurrent);
+		pCurrent = pCurrent->m_pNext;
+	}
+}
+
 void dae::Subject::AddObserver(Observer* pObserver)
 {
 	pObserver->m_pNext = m_pHead;

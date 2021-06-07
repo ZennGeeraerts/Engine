@@ -26,7 +26,7 @@ namespace dae
         };
 
         C_QBertMovement(GameObject* pGameObject);
-        virtual ~C_QBertMovement() noexcept;
+        virtual ~C_QBertMovement() noexcept = default;
 
         C_QBertMovement(const C_QBertMovement& other) = delete;
         C_QBertMovement(C_QBertMovement&& other) noexcept = delete;

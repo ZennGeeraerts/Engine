@@ -170,6 +170,9 @@
     <ClInclude Include="XBoxControllerImpl.h">
       <Filter>Source Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="SDLInputSystemImpl.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SmileEnginePCH.cpp">
@@ -293,6 +296,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XBoxControllerImpl.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLInputSystemImpl.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>

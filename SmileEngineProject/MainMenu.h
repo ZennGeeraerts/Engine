@@ -3,7 +3,7 @@
 
 namespace dae
 {
-    class MainMenu : public Scene
+    class MainMenu final : public Scene
     {
     public:
         MainMenu(const GameSettings& gameSettings);

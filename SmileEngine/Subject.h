@@ -10,7 +10,7 @@ namespace dae
 	{
 	public:
 		Subject();
-		~Subject() noexcept = default;
+		~Subject() noexcept;
 
 		Subject(const Subject& other) = delete;
 		Subject(Subject&& other) noexcept = delete;

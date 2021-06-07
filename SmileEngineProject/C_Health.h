@@ -10,7 +10,7 @@ namespace dae
 	{
 	public:
 		C_Health(GameObject* pGameObject);
-		virtual ~C_Health() noexcept;
+		virtual ~C_Health() noexcept = default;
 		C_Health(const C_Health&) = delete;
 		C_Health(C_Health&&) noexcept = delete;
 
